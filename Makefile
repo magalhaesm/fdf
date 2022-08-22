@@ -44,6 +44,8 @@ $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 
 ${LIBFT}:
 	@$(LOG)
+	git submodule init
+	git submodule update
 	@echo "Compiling libft..."
 	@make -C ./libft --no-print-directory
 
