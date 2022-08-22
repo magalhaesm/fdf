@@ -1,5 +1,5 @@
 NAME	= fdf
-SOURCES	= main.c load_data.c cleanup.c
+SOURCES	= main.c load_data.c scene.c draw_line.c render.c cleanup.c
 
 LIBFT	= ./libft/libft.a
 

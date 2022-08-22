@@ -6,12 +6,9 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 10:32:10 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/22 15:18:28 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <fcntl.h>
-#include <stdlib.h>
 
 #include "../include/fdf.h"
 
@@ -22,7 +19,7 @@ static void	record(int *last, int *points);
 static void	convert_data(t_scene *scene, int fd);
 static void	set_map_dimensions(t_scene *scene, int fd);
 
-void	load_data(t_scene *scene, char *file)
+void	load_map(t_scene *scene, char *file)
 {
 	int	fd;
 
