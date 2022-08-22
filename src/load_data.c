@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 15:18:28 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:16:03 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	load_map(t_scene *scene, char *file)
 {
 	int	fd;
 
-	// TODO: colocar verificação de erros
 	fd = open(file, O_RDONLY);
 	set_map_dimensions(scene, fd);
 	close(fd);

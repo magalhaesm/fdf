@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:05:33 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 14:08:39 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:15:09 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	set_variables(t_line *line, t_point p1, t_point p2);
 
 void	draw_line(t_img *canvas, t_point p1, t_point p2, int color)
 {
-	t_line line;
+	t_line	line;
 
 	set_variables(&line, p1, p2);
 	while (line.i <= (line.dx + line.dy))
@@ -43,7 +43,6 @@ static void	set_variables(t_line *line, t_point p1, t_point p2)
 {
 	line->dx = iabs(p2.x - p1.x);
 	line->dy = iabs(p2.y - p1.y);
-
 	if (p1.x < p2.x)
 		line->ix = 1;
 	else

@@ -6,10 +6,9 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 15:15:08 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:17:11 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/fdf.h"
 
@@ -18,14 +17,14 @@ static void	set_point(int row, int col, t_point *p, t_data *data);
 void	scene_init(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr,
-		WINDOW_WIDTH, WINDOW_HEIGHT, "Fil de Fer");
-	data->canvas.img_ptr = mlx_new_image(data->mlx_ptr,
+	data->win_ptr = mlx_new_window(data->mlx_ptr, \
+	WINDOW_WIDTH, WINDOW_HEIGHT, "Fil de Fer");
+	data->canvas.img_ptr = mlx_new_image(data->mlx_ptr, \
 		WINDOW_WIDTH, WINDOW_HEIGHT);
-	data->canvas.addr = mlx_get_data_addr(data->canvas.img_ptr,
-		&data->canvas.bits_per_pixel,
+	data->canvas.addr = mlx_get_data_addr(data->canvas.img_ptr, \
+		&data->canvas.bits_per_pixel, \
 		&data->canvas.line_len, &data->canvas.endian);
-	render_background(&data->canvas,  CANVAS_BG);
+	render_background(&data->canvas, CANVAS_BG);
 }
 
 void	render_scene(t_data *data)

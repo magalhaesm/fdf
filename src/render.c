@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:46:46 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 14:10:08 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:14:21 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	put_pixel(t_img *canvas, int x, int y, int color)
 
 	if (x >= 0 && x <= WINDOW_WIDTH && y >= 0 && y <= WINDOW_HEIGHT)
 	{
-		pixel = canvas->addr + (y * canvas->line_len + x *
+		pixel = canvas->addr + (y * canvas->line_len + x * \
 			(canvas->bits_per_pixel / 8));
 		*(int *)pixel = color;
 	}

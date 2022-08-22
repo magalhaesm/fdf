@@ -6,27 +6,27 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 15:14:21 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:13:50 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include <fcntl.h>
-#include <stdlib.h>
-#include <math.h>
-#include <mlx.h>
-#include <X11/X.h>
-#include <X11/keysym.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <math.h>
+# include <mlx.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 # include "../libft/libft.h"
 
-#define CANVAS_BG 0x000000
-#define CYAN 0x00ffff
+# define CANVAS_BG 0x000000
+# define CYAN 0x00ffff
 
-#define WINDOW_WIDTH 1024
-#define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 1024
+# define WINDOW_HEIGHT 600
 // #define WINDOW_WIDTH 600
 // #define WINDOW_HEIGHT 500
 
