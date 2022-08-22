@@ -12,10 +12,10 @@ OBJS	= $(addprefix $(OBJS_PATH)/, $(SOURCES:.c=.o))
 CFLAGS	= -Wall -Wextra -Werror -g
 RM			= rm -f
 
-CYAN	= \33[1;36m
+CYAN	= \033[1;36m
 NC		= \033[0m
 
-LOG	= printf "$(CYAN)info: $(NC)"
+LOG	= printf "$(CYAN)info:$(NC) %s\n"
 
 all:		$(NAME)
 
@@ -27,26 +27,25 @@ debug: CFLAGS += -g
 debug: all
 
 norma:
-	@ norminette $(SRCS_PATH) $(INCLUDES)
+	@norminette $(SRCS_PATH) $(INCLUDES)
 
 # ---------------------------------------
 
 $(NAME):	$(OBJS_PATH) $(LIBFT) $(OBJS)
+	@$(LOG) "Compiling $(NAME)"
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lmlx -lXext -lX11 -lm -o $(NAME)
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 
 $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
-	@$(LOG)
-	@echo "Compiling $@"
+	@$(LOG) "Compiling $@"
 	$(CC) $(CFLAGS) -c $< -o $@
 
-${LIBFT}:
-	@$(LOG)
+$(LIBFT):
+	@$(LOG) "Compiling libft..."
 	git submodule init
 	git submodule update
-	@echo "Compiling libft..."
 	@make -C ./libft --no-print-directory
 
 clean:
