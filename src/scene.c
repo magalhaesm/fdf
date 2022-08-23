@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/23 20:03:10 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/23 20:03:43 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ void	scene_init(t_data *data)
 	data->canvas.img_ptr = mlx_new_image(data->mlx_ptr, \
 		WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->canvas.addr = mlx_get_data_addr(data->canvas.img_ptr, \
-		&data->canvas.bits_per_pixel, \
-		&data->canvas.line_len, &data->canvas.endian);
+		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
 	render_background(&data->canvas, CANVAS_BG);
 }
 

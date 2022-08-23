@@ -1,9 +1,9 @@
 NAME	= fdf
-SOURCES	= main.c load_data.c scene.c draw_line.c render.c cleanup.c
+INCLUDES	= fdf.h
+SOURCES	= main.c load_data.c scene.c draw_line.c render.c cleanup.c events.c
 
 LIBFT	= ./libft/libft.a
 
-INCLUDES	= include
 SRCS_PATH	= src
 OBJS_PATH	= obj
 SRCS	= $(addprefix $(SRCS_PATH)/, $(SOURCES))
@@ -27,11 +27,11 @@ debug: CFLAGS += -g
 debug: all
 
 norma:
-	@norminette $(SRCS_PATH) $(INCLUDES)
+	@norminette $(SRCS_PATH) include
 
 # ---------------------------------------
 
-$(NAME):	$(OBJS_PATH) $(LIBFT) $(OBJS)
+$(NAME):	$(OBJS_PATH) $(LIBFT) $(OBJS) $(addprefix include/, $(INCLUDES))
 	@$(LOG) "Compiling $(NAME)"
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lmlx -lXext -lX11 -lm -o $(NAME)
 
@@ -39,7 +39,7 @@ $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 
 $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
-	@$(LOG) "Compiling $@"
+	@$(LOG) "Compiling $<"
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):

@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 19:46:46 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/23 18:14:18 by mdias-ma         ###   ########.fr       */
+/*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
+/*   Updated: 2022/08/23 18:18:20 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	put_pixel(t_img *canvas, int x, int y, int color)
+int	quit(int keysym, t_data *data)
 {
-	char	*pixel;
-
-	if (x >= 0 && x <= WINDOW_WIDTH && y >= 0 && y <= WINDOW_HEIGHT)
+	if (keysym == XK_Escape)
 	{
-		pixel = canvas->addr + (y * canvas->line_len + x * (canvas->bpp / 8));
-		*(int *)pixel = color;
+		mlx_clear_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_image(data->mlx_ptr, data->canvas.img_ptr);
+		mlx_loop_end(data->mlx_ptr);
 	}
-}
-
-void	render_background(t_img *canvas, int color)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < WINDOW_HEIGHT)
-	{
-		x = 0;
-		while (x < WINDOW_WIDTH)
-			put_pixel(canvas, x++, y, color);
-		y++;
-	}
+	return (0);
 }

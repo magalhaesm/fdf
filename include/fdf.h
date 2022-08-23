@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/23 12:55:58 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:19:25 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
-	int		bits_per_pixel;
+	int		bpp;
 	int		line_len;
 	int		endian;
 }	t_img;
@@ -85,5 +85,6 @@ void	free_map(t_scene *scene);
 void	scene_init(t_data *data);
 int		get_scale(int row, int col);
 void	render_scene(t_data *data);
+int		quit(int keysym, t_data *data);
 
 #endif
