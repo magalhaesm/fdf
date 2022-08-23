@@ -1,35 +1,26 @@
-NAME	= fdf
+NAME		= fdf
 INCLUDES	= fdf.h
-SOURCES	= main.c load_data.c scene.c draw_line.c render.c cleanup.c events.c
+SOURCES		= main.c load_data.c scene.c draw_line.c render.c cleanup.c events.c
 
-LIBFT	= ./libft/libft.a
+LIBFT		= ./libft/libft.a
 
 SRCS_PATH	= src
 OBJS_PATH	= obj
-SRCS	= $(addprefix $(SRCS_PATH)/, $(SOURCES))
-OBJS	= $(addprefix $(OBJS_PATH)/, $(SOURCES:.c=.o))
+SRCS		= $(addprefix $(SRCS_PATH)/, $(SOURCES))
+OBJS		= $(addprefix $(OBJS_PATH)/, $(SOURCES:.c=.o))
 
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror -g
 RM			= rm -f
 
-CYAN	= \033[1;36m
-NC		= \033[0m
+CYAN		= \033[1;36m
+RESET		= \033[0m
 
-LOG	= printf "$(CYAN)info:$(NC) %s\n"
+LOG			= printf "$(CYAN)info:$(RESET) %s\n"
 
 all:		$(NAME)
 
-# ---------------------------------------
-build: CFLAGS += -O2
-build: all
-
-debug: CFLAGS += -g
-debug: all
-
 norma:
 	@norminette $(SRCS_PATH) include
-
-# ---------------------------------------
 
 $(NAME):	$(OBJS_PATH) $(LIBFT) $(OBJS) $(addprefix include/, $(INCLUDES))
 	@$(LOG) "Compiling $(NAME)"
@@ -51,10 +42,9 @@ $(LIBFT):
 clean:
 	@$(RM) -r $(OBJS_PATH)
 
-fclean: clean
-	@make fclean -C ./libft --no-print-directory -s
+fclean:	clean
 	@$(RM) $(NAME)
 
-re: fclean all
+re:	fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:	all clean fclean re
