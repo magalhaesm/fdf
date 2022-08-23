@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 16:13:50 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/23 12:55:58 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@
 # include "../libft/libft.h"
 
 # define CANVAS_BG 0x000000
-# define CYAN 0x00ffff
+# define CYAN 0x00FFFF
 
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 600
-// #define WINDOW_WIDTH 600
-// #define WINDOW_HEIGHT 500
 
 typedef struct s_scene
 {
@@ -36,6 +34,10 @@ typedef struct s_scene
 	int	rows;
 	int	cols;
 	int	scale;
+	int	scaled_row;
+	int	scaled_col;
+	int	mid_width;
+	int	mid_height;
 }	t_scene;
 
 typedef struct s_img
@@ -55,21 +57,12 @@ typedef struct s_point
 	int	color;
 }	t_point;
 
-typedef struct s_cache
-{
-	int	scaled_col;
-	int	scaled_row;
-	int	mid_width;
-	int	mid_height;
-}	t_cache;
-
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_scene	scene;
 	t_img	canvas;
-	t_cache	cache;
+	t_scene	scene;
 }	t_data;
 
 typedef struct s_line
