@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/24 22:07:45 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/24 22:10:58 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static int	point_counter(const char *line);
 static void	record(int *last, int *points);
-static void	convert_data(t_scene *scene, int fd);
+static void	data_convert(t_scene *scene, int fd);
 static void	set_map_dimensions(t_scene *scene, int fd);
 
 void	load_map(t_scene *scene, char *file)
@@ -27,7 +27,7 @@ void	load_map(t_scene *scene, char *file)
 	set_map_dimensions(scene, fd);
 	close(fd);
 	fd = open(file, O_RDONLY);
-	convert_data(scene, fd);
+	data_convert(scene, fd);
 	close(fd);
 }
 
@@ -89,7 +89,7 @@ static void	set_map_dimensions(t_scene *scene, int fd)
 		exit(EXIT_FAILURE);
 }
 
-static void	convert_data(t_scene *scene, int fd)
+static void	data_convert(t_scene *scene, int fd)
 {
 	int		row;
 	int		col;
@@ -106,7 +106,7 @@ static void	convert_data(t_scene *scene, int fd)
 		buffer = ft_split(line, ' ');
 		free(line);
 		col = 0;
-		while (col < scene->cols)
+		while (buffer[col])
 		{
 			scene->map[row][col] = ft_atoi(buffer[col]);
 			free(buffer[col]);
