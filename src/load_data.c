@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 16:16:03 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/24 22:07:45 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define INVALID_MAP -1
 
-static int	count_points(const char *line);
+static int	point_counter(const char *line);
 static void	record(int *last, int *points);
 static void	convert_data(t_scene *scene, int fd);
 static void	set_map_dimensions(t_scene *scene, int fd);
@@ -41,7 +41,7 @@ static void	record(int *last, int *points)
 	*last = *points;
 }
 
-static int	count_points(const char *line)
+static int	point_counter(const char *line)
 {
 	static int	last;
 	int			index;
@@ -60,7 +60,7 @@ static int	count_points(const char *line)
 			is_point = TRUE;
 			points++;
 		}
-		else
+		else if (line[index] == ' ')
 			is_point = FALSE;
 		index++;
 	}
@@ -80,7 +80,7 @@ static void	set_map_dimensions(t_scene *scene, int fd)
 		line = get_next_line(fd);
 		if (line)
 		{
-			scene->cols = count_points(line);
+			scene->cols = point_counter(line);
 			scene->rows++;
 			free(line);
 		}
