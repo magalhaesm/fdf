@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/23 18:19:25 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/25 08:46:54 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,28 @@
 
 # include "../libft/libft.h"
 
+# define GRID 0x00FFFF
 # define CANVAS_BG 0x000000
-# define CYAN 0x00FFFF
 
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 600
 
+typedef struct s_alt
+{
+	int	z;
+	int	color;
+}	t_alt;
+
 typedef struct s_scene
 {
-	int	**map;
-	int	rows;
-	int	cols;
-	int	scale;
-	int	scaled_row;
-	int	scaled_col;
-	int	mid_width;
-	int	mid_height;
+	int		rows;
+	int		cols;
+	int		scale;
+	int		scaled_row;
+	int		scaled_col;
+	int		mid_width;
+	int		mid_height;
+	t_alt	**map;
 }	t_scene;
 
 typedef struct s_img
@@ -86,5 +92,7 @@ void	scene_init(t_data *data);
 int		get_scale(int row, int col);
 void	render_scene(t_data *data);
 int		quit(int keysym, t_data *data);
+void	data_convert(t_scene *scene, int fd);
+void	generate_map(t_scene *scene);
 
 #endif

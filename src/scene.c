@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/23 20:03:43 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/25 08:46:47 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void	render_scene(t_data *data)
 			{
 				set_point(row, col, &p1, data->scene);
 				set_point(row, col + 1, &p2, data->scene);
-				draw_line(&data->canvas, p1, p2, CYAN);
+				draw_line(&data->canvas, p1, p2, GRID);
 			}
 			if (row + 1 <= data->scene.rows)
 			{
 				set_point(row, col, &p1, data->scene);
 				set_point(row + 1, col, &p2, data->scene);
-				draw_line(&data->canvas, p1, p2, CYAN);
+				draw_line(&data->canvas, p1, p2, GRID);
 			}
 		}
 	}
@@ -65,6 +65,7 @@ static void	set_point(int row, int col, t_point *p, t_scene scene)
 	p->y = row * scene.scale;
 	p->x -= scene.scaled_col;
 	p->y -= scene.scaled_row;
+	// p->z = scene.map[row][col].z * scene.scale * 0.5;
 	isometric(p);
 	p->x += scene.mid_width;
 	p->y += scene.mid_height;
@@ -77,6 +78,7 @@ static void	isometric(t_point *p)
 	temp_x = p->x;
 	p->x = (temp_x - p->y) * COS_30;
 	p->y = (temp_x + p->y) * SIN_30;
+	// p->y = (temp_x + p->y) * SIN_30 - p->z;
 }
 
 int	get_scale(int row, int col)

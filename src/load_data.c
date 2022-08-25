@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/24 22:10:58 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/25 07:44:21 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 static int	point_counter(const char *line);
 static void	record(int *last, int *points);
-static void	data_convert(t_scene *scene, int fd);
 static void	set_map_dimensions(t_scene *scene, int fd);
 
 void	load_map(t_scene *scene, char *file)
@@ -27,6 +26,7 @@ void	load_map(t_scene *scene, char *file)
 	set_map_dimensions(scene, fd);
 	close(fd);
 	fd = open(file, O_RDONLY);
+	generate_map(scene);
 	data_convert(scene, fd);
 	close(fd);
 }
@@ -87,33 +87,4 @@ static void	set_map_dimensions(t_scene *scene, int fd)
 	}
 	if (scene->cols == -1 || scene->rows == 0)
 		exit(EXIT_FAILURE);
-}
-
-static void	data_convert(t_scene *scene, int fd)
-{
-	int		row;
-	int		col;
-	char	*line;
-	char	**buffer;
-
-	scene->map = malloc(sizeof(int *) * scene->rows);
-	line = "";
-	row = 0;
-	while (row < scene->rows)
-	{
-		scene->map[row] = malloc(sizeof(int *) * scene->cols);
-		line = get_next_line(fd);
-		buffer = ft_split(line, ' ');
-		free(line);
-		col = 0;
-		while (buffer[col])
-		{
-			scene->map[row][col] = ft_atoi(buffer[col]);
-			free(buffer[col]);
-			col++;
-		}
-		row++;
-		free(buffer);
-	}
-	free(get_next_line(fd));
 }
