@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/25 15:44:40 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/25 17:47:35 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #define SIN_30 0.500000
 #define COS_30 0.866025
 
-static void	set_point(int row, int col, t_point *p, t_scene scene);
+static void	set_point(t_point *p, int row, int col, t_scene scene);
 static void	isometric(t_point *p);
 
 void	scene_init(t_data *data)
@@ -27,7 +27,7 @@ void	scene_init(t_data *data)
 		WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->canvas.addr = mlx_get_data_addr(data->canvas.img_ptr, \
 		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
-	render_background(&data->canvas, CANVAS_BG);
+	// render_background(&data->canvas, CANVAS_BG);
 }
 
 void	render_scene(t_data *data)
@@ -45,27 +45,25 @@ void	render_scene(t_data *data)
 		{
 			if (col + 1 < data->scene.cols)
 			{
-				set_point(row, col, &p1, data->scene);
-				set_point(row, col + 1, &p2, data->scene);
+				set_point(&p1, row, col + 1, data->scene);
+				set_point(&p2, row, col, data->scene);
 				draw_line(&data->canvas, p1, p2, GRID);
 			}
 			if (row + 1 < data->scene.rows)
 			{
-				set_point(row, col, &p1, data->scene);
-				set_point(row + 1, col, &p2, data->scene);
+				set_point(&p1, row + 1, col, data->scene);
+				set_point(&p2, row, col, data->scene);
 				draw_line(&data->canvas, p1, p2, GRID);
 			}
 		}
 	}
 }
 
-static void	set_point(int row, int col, t_point *p, t_scene scene)
+static void	set_point(t_point *p, int row, int col, t_scene scene)
 {
-	p->x = col * scene.scale;
-	p->y = row * scene.scale;
-	p->x -= scene.scaled_col;
-	p->y -= scene.scaled_row;
-	p->z = scene.map[row][col].z * scene.scale * 0.5;
+	p->x = col * scene.scale - scene.scaled_col;
+	p->y = row * scene.scale - scene.scaled_row;
+	p->z = scene.map[row][col].z * scene.scale * 0.3;
 	isometric(p);
 	p->x += scene.mid_width;
 	p->y += scene.mid_height;
