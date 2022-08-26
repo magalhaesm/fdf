@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/25 07:44:21 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/26 19:05:13 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	load_map(t_scene *scene, char *file)
 	fd = open(file, O_RDONLY);
 	set_map_dimensions(scene, fd);
 	close(fd);
-	fd = open(file, O_RDONLY);
 	generate_map(scene);
+	fd = open(file, O_RDONLY);
 	data_convert(scene, fd);
 	close(fd);
 }

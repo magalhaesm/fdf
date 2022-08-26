@@ -6,20 +6,23 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:05:33 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/22 16:15:09 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/26 19:21:10 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 static int	iabs(int x);
-static void	set_variables(t_line *line, t_point p1, t_point p2);
+static void	setup(t_line *line, t_point p1, t_point p2);
+static int	get_color(t_point p1, t_point p2);
 
-void	draw_line(t_img *canvas, t_point p1, t_point p2, int color)
+void	draw_line(t_img *canvas, t_point p1, t_point p2)
 {
 	t_line	line;
+	int		color;
 
-	set_variables(&line, p1, p2);
+	color = get_color(p1, p2);
+	setup(&line, p1, p2);
 	while (line.i <= (line.dx + line.dy))
 	{
 		put_pixel(canvas, p1.x, p1.y, color);
@@ -39,7 +42,16 @@ void	draw_line(t_img *canvas, t_point p1, t_point p2, int color)
 	}
 }
 
-static void	set_variables(t_line *line, t_point p1, t_point p2)
+static int	get_color(t_point p1, t_point p2)
+{
+	if (p1.z)
+		return (p1.color);
+	if (p2.z)
+		return (p2.color);
+	return (GRID);
+}
+
+static void	setup(t_line *line, t_point p1, t_point p2)
 {
 	line->dx = iabs(p2.x - p1.x);
 	line->dy = iabs(p2.y - p1.y);

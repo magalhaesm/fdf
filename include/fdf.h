@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/25 08:46:54 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/26 19:04:24 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_line
 
 void	load_map(t_scene *scene, char *file);
 void	render_background(t_img *canvas, int color);
-void	draw_line(t_img *canvas, t_point p1, t_point p2, int color);
+void	draw_line(t_img *canvas, t_point p1, t_point p2);
 void	put_pixel(t_img *canvas, int x, int y, int color);
 void	free_map(t_scene *scene);
 void	scene_init(t_data *data);
