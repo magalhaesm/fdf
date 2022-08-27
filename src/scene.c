@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/26 19:08:39 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 06:32:17 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	scene_init(t_data *data)
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 		WINDOW_WIDTH, WINDOW_HEIGHT, "Fil de Fer");
-	data->canvas.img_ptr = mlx_new_image(data->mlx_ptr, \
+	data->canvas.ptr = mlx_new_image(data->mlx_ptr, \
 		WINDOW_WIDTH, WINDOW_HEIGHT);
-	data->canvas.addr = mlx_get_data_addr(data->canvas.img_ptr, \
+	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
 		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
 	// render_background(&data->canvas, CANVAS_BG);
 }

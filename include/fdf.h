@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/26 22:18:18 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 06:31:04 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_scene
 
 typedef struct s_img
 {
-	void	*img_ptr;
+	void	*ptr;
 	char	*addr;
 	int		bpp;
 	int		line_len;
