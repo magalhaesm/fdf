@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/27 06:32:17 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 08:32:40 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 
 static void	set_point(t_point *p, int row, int col, t_scene scene);
 static void	isometric(t_point *p);
+static void	render_scene(t_data *data);
 
-void	scene_init(t_data *data)
+void	init_scene(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
@@ -27,10 +28,17 @@ void	scene_init(t_data *data)
 		WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
 		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
-	// render_background(&data->canvas, CANVAS_BG);
 }
 
-void	render_scene(t_data *data)
+int	draw_scene(t_data *data)
+{
+	render_scene(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
+		data->canvas.ptr, 0, 0);
+	return (EXIT_SUCCESS);
+}
+
+static void	render_scene(t_data *data)
 {
 	int		col;
 	int		row;
