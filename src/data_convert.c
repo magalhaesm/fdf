@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/26 19:04:47 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/26 22:46:51 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,13 @@ void	generate_map(t_scene *scene)
 
 static void	extract(t_alt *altitude, char *data)
 {
-	char	**buffer;
-	int		i;
+	char	*hex;
 
-	if (ft_strchr(data, ','))
+	hex = ft_strchr(data, ',');
+	if (hex)
 	{
-		buffer = ft_split(data, ',');
-		altitude->z = ft_atoi(buffer[0]);
-		altitude->color = ft_htoi(buffer[1]);
-		i = 0;
-		while (buffer[i])
-			free(buffer[i++]);
-		free(buffer);
+		altitude->z = ft_atoi(data);
+		altitude->color = ft_htoi(hex);
 	}
 	else
 	{
