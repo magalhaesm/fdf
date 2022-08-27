@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/26 19:04:24 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/26 22:18:18 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	free_map(t_scene *scene);
 void	scene_init(t_data *data);
 int		get_scale(int row, int col);
 void	render_scene(t_data *data);
-int		quit(int keysym, t_data *data);
 void	data_convert(t_scene *scene, int fd);
 void	generate_map(t_scene *scene);
+void	register_events(t_data *data);
 
 #endif
