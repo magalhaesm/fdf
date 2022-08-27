@@ -1,6 +1,6 @@
 NAME		= fdf
 INCLUDES	= fdf.h
-SOURCES		= main.c load_data.c scene.c draw_line.c render.c cleanup.c events.c data_convert.c
+SOURCES		= main.c load_data.c scene.c draw_line.c draw_utils.c cleanup.c events.c data_convert.c
 
 LIBFT		= ./libft/libft.a
 
@@ -9,7 +9,8 @@ OBJS_PATH	= obj
 SRCS		= $(addprefix $(SRCS_PATH)/, $(SOURCES))
 OBJS		= $(addprefix $(OBJS_PATH)/, $(SOURCES:.c=.o))
 
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+# CFLAGS		= -Wall -Wextra -Werror -O3
 RM			= rm -f
 
 CYAN		= \033[1;36m

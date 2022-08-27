@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/27 08:32:40 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 09:38:49 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,4 @@ static void	isometric(t_point *p)
 	temp_x = p->x;
 	p->x = (temp_x - p->y) * COS_30;
 	p->y = (temp_x + p->y) * SIN_30 - p->z;
-}
-
-int	get_scale(int row, int col)
-{
-	int	scale;
-	int	area;
-
-	area = WINDOW_WIDTH * WINDOW_HEIGHT / 4;
-	scale = area / (row * col);
-	scale = sqrt(scale);
-	if (scale < 2)
-		return (2);
-	return (scale);
 }

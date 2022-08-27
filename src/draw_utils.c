@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 19:46:46 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/26 19:02:46 by mdias-ma         ###   ########.fr       */
+/*   Created: 2022/08/27 09:37:45 by mdias-ma          #+#    #+#             */
+/*   Updated: 2022/08/27 09:38:38 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ void	render_background(t_img *canvas, int color)
 		}
 		y++;
 	}
+}
+
+int	get_scale(int row, int col)
+{
+	int	scale;
+	int	area;
+
+	area = WINDOW_WIDTH * WINDOW_HEIGHT / 4;
+	scale = area / (row * col);
+	scale = sqrt(scale);
+	if (scale < 2)
+		return (2);
+	return (scale);
 }
