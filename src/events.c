@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/27 08:26:42 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:51:26 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ static int	key_release(int keysym, t_data *data)
 
 static int	quit(t_data *data)
 {
-	(void) data;
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free_map(&data->scene);
+	free(data->mlx_ptr);
 	exit(EXIT_SUCCESS);
 }

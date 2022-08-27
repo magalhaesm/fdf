@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/27 09:38:49 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:53:51 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,18 @@ void	init_scene(t_data *data)
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 		WINDOW_WIDTH, WINDOW_HEIGHT, "Fil de Fer");
-	data->canvas.ptr = mlx_new_image(data->mlx_ptr, \
-		WINDOW_WIDTH, WINDOW_HEIGHT);
-	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
-		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
 }
 
 int	draw_scene(t_data *data)
 {
+	data->canvas.ptr = mlx_new_image(data->mlx_ptr, \
+		WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
+		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
 	render_scene(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
 		data->canvas.ptr, 0, 0);
+	mlx_destroy_image(data->mlx_ptr, data->canvas.ptr);
 	return (EXIT_SUCCESS);
 }
 

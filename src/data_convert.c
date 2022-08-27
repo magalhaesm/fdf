@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/26 22:46:51 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 12:54:13 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	data_convert(t_scene *scene, int fd)
 		free(buffer[col]);
 		free(buffer);
 	}
+	free(get_next_line(fd));
 }
 
 void	generate_map(t_scene *scene)
