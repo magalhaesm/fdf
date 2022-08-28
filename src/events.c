@@ -6,16 +6,16 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 11:53:57 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 21:22:24 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-#include <mlx.h>
 
 static int	quit(t_data *data);
 static int	key_press(int keysym, t_data *data);
 static int	key_release(int keysym, t_data *data);
+static int	change_altitude(int keysym, t_data *data);
 
 void	event_handler(t_data *data)
 {
@@ -23,6 +23,15 @@ void	event_handler(t_data *data)
 	mlx_hook(data->win_ptr, DestroyNotify, NoEventMask, quit, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press, data);
 	mlx_key_hook(data->win_ptr, key_release, data);
+}
+
+static int	change_altitude(int keysym, t_data *data)
+{
+	if (keysym == XK_bracketleft)
+		data->scene.z_scale += 0.1;
+	else
+		data->scene.z_scale -= 0.1;
+	return (EXIT_SUCCESS);
 }
 
 static int	key_release(int keysym, t_data *data)
@@ -43,6 +52,8 @@ static int	key_press(int keysym, t_data *data)
 		quit(data);
 	else if (keysym == XK_equal || keysym == XK_minus)
 		zoom(keysym, data);
+	else if (keysym == XK_bracketleft || keysym == XK_bracketright)
+		change_altitude(keysym, data);
 	draw_scene(data);
 	return (EXIT_SUCCESS);
 }

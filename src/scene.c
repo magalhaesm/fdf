@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 14:40:32 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 17:46:42 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static void	set_point(t_point *p, int row, int col, t_scene scene);
 
 int	draw_scene(t_data *data)
 {
-	data->canvas.ptr = mlx_new_image(data->mlx_ptr, \
-		WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->canvas.ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
 		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
 	render_scene(data);
@@ -74,7 +73,7 @@ static void	set_point(t_point *p, int row, int col, t_scene scene)
 {
 	p->x = col * scene.scale - scene.scaled_col;
 	p->y = row * scene.scale - scene.scaled_row;
-	p->z = scene.map[row][col].z * scene.scale * 0.1;
+	p->z = scene.map[row][col].z * scene.scale * scene.z_scale;
 	p->color = scene.map[row][col].color;
 	if (scene.view == ISOMETRIC)
 		isometric(p);

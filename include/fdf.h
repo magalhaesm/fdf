@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 11:46:30 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 17:45:53 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define GRID 0x00FFFF
 # define CANVAS_BG 0x000000
 
-# define WINDOW_WIDTH 1024
-# define WINDOW_HEIGHT 600
+# define WIN_WIDTH 1024
+# define WIN_HEIGHT 600
 
 # define PARALLEL 1
 # define ISOMETRIC 2
@@ -46,6 +46,8 @@ typedef struct s_scene
 	int		scaled_col;
 	int		default_scale;
 	int		view;
+	double	z_scale;
+	double	default_z;
 	int		mid_width;
 	int		mid_height;
 	t_alt	**map;

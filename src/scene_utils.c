@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 11:46:50 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 17:49:57 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,21 @@ void	init_scene(t_data *data)
 		exit(EXIT_FAILURE);
 	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
-		WINDOW_WIDTH, WINDOW_HEIGHT, "Fil de Fer");
-	data->scene.mid_width = WINDOW_WIDTH / 2;
-	data->scene.mid_height = WINDOW_HEIGHT / 2;
+		WIN_WIDTH, WIN_HEIGHT, "Fil de Fer");
+	data->scene.mid_width = WIN_WIDTH / 2;
+	data->scene.mid_height = WIN_HEIGHT / 2;
 	data->scene.default_scale = get_scale(data->scene.rows, data->scene.cols);
 	data->scene.scale = data->scene.default_scale;
 	set_scale(data);
 	data->scene.view = ISOMETRIC;
+	data->scene.default_z = 0.1;
+	data->scene.z_scale = data->scene.default_z;
 }
 
 void	reset_scene(t_data *data)
 {
 	data->scene.scale = data->scene.default_scale;
+	data->scene.z_scale = data->scene.default_z;
 	set_scale(data);
 }
 
@@ -60,7 +63,7 @@ static int	get_scale(int row, int col)
 	int	scale;
 	int	area;
 
-	area = WINDOW_WIDTH * WINDOW_HEIGHT / 4;
+	area = WIN_WIDTH * WIN_HEIGHT / 4;
 	scale = area / (row * col);
 	scale = sqrt(scale);
 	if (scale < 2)
