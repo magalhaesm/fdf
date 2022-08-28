@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/26 19:05:13 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 20:55:47 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,45 @@
 
 static int	point_counter(const char *line);
 static void	record(int *last, int *points);
-static void	set_map_dimensions(t_scene *scene, int fd);
+static void	get_map_dimensions(t_scene *scene, int fd);
+static void check_map_error(t_scene *scene, int fd);
 
 void	load_map(t_scene *scene, char *file)
 {
 	int	fd;
 
 	fd = open(file, O_RDONLY);
-	set_map_dimensions(scene, fd);
+	if (fd == -1)
+	{
+		ft_printf("No file %s\n", file);
+		exit(EXIT_FAILURE);
+	}
+	get_map_dimensions(scene, fd);
 	close(fd);
 	generate_map(scene);
 	fd = open(file, O_RDONLY);
 	data_convert(scene, fd);
 	close(fd);
+}
+
+static void	get_map_dimensions(t_scene *scene, int fd)
+{
+	char	*line;
+
+	line = "";
+	scene->cols = 0;
+	scene->rows = 0;
+	while (line)
+	{
+		line = get_next_line(fd);
+		if (line)
+		{
+			scene->cols = point_counter(line);
+			scene->rows++;
+			free(line);
+		}
+	}
+	check_map_error(scene, fd);
 }
 
 static void	record(int *last, int *points)
@@ -68,23 +94,18 @@ static int	point_counter(const char *line)
 	return (points);
 }
 
-static void	set_map_dimensions(t_scene *scene, int fd)
+static void check_map_error(t_scene *scene, int fd)
 {
-	char	*line;
-
-	line = "";
-	scene->cols = 0;
-	scene->rows = 0;
-	while (line)
+	if (scene->cols == -1)
 	{
-		line = get_next_line(fd);
-		if (line)
-		{
-			scene->cols = point_counter(line);
-			scene->rows++;
-			free(line);
-		}
-	}
-	if (scene->cols == -1 || scene->rows == 0)
+		ft_printf("Found wrong line length. Exiting.\n");
+		close(fd);
 		exit(EXIT_FAILURE);
+	}
+	if (scene->rows == 0)
+	{
+		ft_printf("No data found.\n");
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
 }

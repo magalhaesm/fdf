@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:05:45 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/27 08:27:06 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 18:37:28 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	(void) argc;
+	if (argc != 2)
+	{
+		ft_printf("Usage %s <filename>\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
 	load_map(&data.scene, argv[1]);
 	data.scene.scale = get_scale(data.scene.rows, data.scene.cols);
 	data.scene.scaled_col = (data.scene.cols * data.scene.scale) / 2;

@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/27 13:15:32 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/27 20:43:29 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	init_scene(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
+	{
+		ft_printf("No X server found.\n");
 		exit(EXIT_FAILURE);
+	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 		WINDOW_WIDTH, WINDOW_HEIGHT, "Fil de Fer");
 }
