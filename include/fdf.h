@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 11:41:11 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 11:46:30 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 600
 
+# define PARALLEL 1
+# define ISOMETRIC 2
+
 typedef struct s_alt
 {
 	int	z;
@@ -42,6 +45,7 @@ typedef struct s_scene
 	int		scaled_row;
 	int		scaled_col;
 	int		default_scale;
+	int		view;
 	int		mid_width;
 	int		mid_height;
 	t_alt	**map;

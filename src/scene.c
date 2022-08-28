@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 11:33:30 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 14:40:32 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ static void	set_point(t_point *p, int row, int col, t_scene scene)
 	p->y = row * scene.scale - scene.scaled_row;
 	p->z = scene.map[row][col].z * scene.scale * 0.1;
 	p->color = scene.map[row][col].color;
-	isometric(p);
+	if (scene.view == ISOMETRIC)
+		isometric(p);
 	p->x += scene.mid_width;
 	p->y += scene.mid_height;
 }

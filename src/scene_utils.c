@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 11:33:16 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 11:46:50 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	init_scene(t_data *data)
 	data->scene.default_scale = get_scale(data->scene.rows, data->scene.cols);
 	data->scene.scale = data->scene.default_scale;
 	set_scale(data);
+	data->scene.view = ISOMETRIC;
 }
 
 void	reset_scene(t_data *data)
