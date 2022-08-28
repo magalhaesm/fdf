@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/27 20:43:29 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 11:33:30 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,9 @@
 #define SIN_30 0.500000
 #define COS_30 0.866025
 
-static void	set_point(t_point *p, int row, int col, t_scene scene);
 static void	isometric(t_point *p);
 static void	render_scene(t_data *data);
-
-void	init_scene(t_data *data)
-{
-	data->mlx_ptr = mlx_init();
-	if (data->mlx_ptr == NULL)
-	{
-		ft_printf("No X server found.\n");
-		exit(EXIT_FAILURE);
-	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, \
-		WINDOW_WIDTH, WINDOW_HEIGHT, "Fil de Fer");
-}
+static void	set_point(t_point *p, int row, int col, t_scene scene);
 
 int	draw_scene(t_data *data)
 {
@@ -42,6 +30,15 @@ int	draw_scene(t_data *data)
 		data->canvas.ptr, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->canvas.ptr);
 	return (EXIT_SUCCESS);
+}
+
+static void	isometric(t_point *p)
+{
+	int	temp_x;
+
+	temp_x = p->x;
+	p->x = (temp_x - p->y) * COS_30;
+	p->y = (temp_x + p->y) * SIN_30 - p->z;
 }
 
 static void	render_scene(t_data *data)
@@ -82,13 +79,4 @@ static void	set_point(t_point *p, int row, int col, t_scene scene)
 	isometric(p);
 	p->x += scene.mid_width;
 	p->y += scene.mid_height;
-}
-
-static void	isometric(t_point *p)
-{
-	int	temp_x;
-
-	temp_x = p->x;
-	p->x = (temp_x - p->y) * COS_30;
-	p->y = (temp_x + p->y) * SIN_30 - p->z;
 }

@@ -1,6 +1,7 @@
 NAME		= fdf
 INCLUDES	= fdf.h
-SOURCES		= main.c load_data.c scene.c draw_line.c draw_utils.c cleanup.c events.c data_convert.c
+SOURCES		= main.c load_data.c scene.c draw_line.c draw_utils.c cleanup.c \
+						events.c data_convert.c scene_utils.c
 
 LIBFT		= ./libft/libft.a
 
