@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 22:43:25 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:31:25 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	event_handler(t_data *data)
 
 static int	change_altitude(int keysym, t_data *data)
 {
-	if (keysym == K_bracketleft)
+	if (keysym == K_BRACKETLEFT)
 		data->scene.z_scale += 0.1;
 	else
 		data->scene.z_scale -= 0.1;
@@ -36,11 +36,11 @@ static int	change_altitude(int keysym, t_data *data)
 
 static int	key_release(int keysym, t_data *data)
 {
-	if (keysym == K_r)
+	if (keysym == K_R)
 		reset_scene(data);
-	else if (keysym == K_p)
+	else if (keysym == K_P)
 		data->scene.view = PARALLEL;
-	else if (keysym == K_i)
+	else if (keysym == K_I)
 		data->scene.view = ISOMETRIC;
 	draw_scene(data);
 	return (EXIT_SUCCESS);
@@ -48,13 +48,13 @@ static int	key_release(int keysym, t_data *data)
 
 static int	key_press(int keysym, t_data *data)
 {
-	if (keysym == K_Escape)
+	if (keysym == K_ESCAPE)
 		quit(data);
-	else if (keysym == K_equal || keysym == K_minus)
+	else if (keysym == K_EQUAL || keysym == K_MINUS)
 		zoom(keysym, data);
-	else if (keysym == K_bracketleft || keysym == K_bracketright)
+	else if (keysym == K_BRACKETLEFT || keysym == K_BRACKETRIGHT)
 		change_altitude(keysym, data);
-	else if (keysym >= K_Left && keysym <= K_Down)
+	else if (keysym >= K_LEFT && keysym <= K_DOWN)
 		move_view(keysym, data);
 	draw_scene(data);
 	return (EXIT_SUCCESS);

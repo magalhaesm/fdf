@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/27 20:55:47 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:28:19 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static int	point_counter(const char *line);
 static void	record(int *last, int *points);
 static void	get_map_dimensions(t_scene *scene, int fd);
-static void check_map_error(t_scene *scene, int fd);
+static void	check_map_error(t_scene *scene, int fd);
 
 void	load_map(t_scene *scene, char *file)
 {
@@ -94,7 +94,7 @@ static int	point_counter(const char *line)
 	return (points);
 }
 
-static void check_map_error(t_scene *scene, int fd)
+static void	check_map_error(t_scene *scene, int fd)
 {
 	if (scene->cols == -1)
 	{

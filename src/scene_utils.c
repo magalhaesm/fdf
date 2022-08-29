@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 22:53:46 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/29 07:31:38 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	reset_scene(t_data *data)
 
 int	zoom(int keysym, t_data *data)
 {
-	if (keysym == K_equal)
+	if (keysym == K_EQUAL)
 		data->scene.scale += 1;
 	else
 		data->scene.scale -= 1;
