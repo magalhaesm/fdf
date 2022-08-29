@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 21:22:24 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 22:43:25 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static int	change_altitude(int keysym, t_data *data);
 void	event_handler(t_data *data)
 {
 	mlx_expose_hook(data->win_ptr, draw_scene, data);
-	mlx_hook(data->win_ptr, DestroyNotify, NoEventMask, quit, data);
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press, data);
+	mlx_hook(data->win_ptr, DESTROYNOTIFY, NOEVENTMASK, quit, data);
+	mlx_hook(data->win_ptr, KEYPRESS, KEYPRESSMASK, key_press, data);
 	mlx_key_hook(data->win_ptr, key_release, data);
 }
 
 static int	change_altitude(int keysym, t_data *data)
 {
-	if (keysym == XK_bracketleft)
+	if (keysym == K_bracketleft)
 		data->scene.z_scale += 0.1;
 	else
 		data->scene.z_scale -= 0.1;
@@ -36,11 +36,11 @@ static int	change_altitude(int keysym, t_data *data)
 
 static int	key_release(int keysym, t_data *data)
 {
-	if (keysym == XK_r)
+	if (keysym == K_r)
 		reset_scene(data);
-	else if (keysym == XK_p)
+	else if (keysym == K_p)
 		data->scene.view = PARALLEL;
-	else if (keysym == XK_i)
+	else if (keysym == K_i)
 		data->scene.view = ISOMETRIC;
 	draw_scene(data);
 	return (EXIT_SUCCESS);
@@ -48,12 +48,14 @@ static int	key_release(int keysym, t_data *data)
 
 static int	key_press(int keysym, t_data *data)
 {
-	if (keysym == XK_Escape)
+	if (keysym == K_Escape)
 		quit(data);
-	else if (keysym == XK_equal || keysym == XK_minus)
+	else if (keysym == K_equal || keysym == K_minus)
 		zoom(keysym, data);
-	else if (keysym == XK_bracketleft || keysym == XK_bracketright)
+	else if (keysym == K_bracketleft || keysym == K_bracketright)
 		change_altitude(keysym, data);
+	else if (keysym >= K_Left && keysym <= K_Down)
+		move_view(keysym, data);
 	draw_scene(data);
 	return (EXIT_SUCCESS);
 }

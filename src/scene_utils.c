@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 17:49:57 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 22:53:46 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ void	init_scene(t_data *data)
 	data->scene.mid_width = WIN_WIDTH / 2;
 	data->scene.mid_height = WIN_HEIGHT / 2;
 	data->scene.default_scale = get_scale(data->scene.rows, data->scene.cols);
-	data->scene.scale = data->scene.default_scale;
-	set_scale(data);
-	data->scene.view = ISOMETRIC;
 	data->scene.default_z = 0.1;
-	data->scene.z_scale = data->scene.default_z;
+	data->scene.view = ISOMETRIC;
+	reset_scene(data);
 }
 
 void	reset_scene(t_data *data)
@@ -40,11 +38,13 @@ void	reset_scene(t_data *data)
 	data->scene.scale = data->scene.default_scale;
 	data->scene.z_scale = data->scene.default_z;
 	set_scale(data);
+	data->scene.move_x = 0;
+	data->scene.move_y = 0;
 }
 
 int	zoom(int keysym, t_data *data)
 {
-	if (keysym == XK_equal)
+	if (keysym == K_equal)
 		data->scene.scale += 1;
 	else
 		data->scene.scale -= 1;

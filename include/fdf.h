@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 17:45:53 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/28 23:09:37 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 # include <stdlib.h>
 # include <math.h>
 # include <mlx.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
 
 # include "../libft/libft.h"
+# include "keycode.h"
 
 # define GRID 0x00FFFF
 # define CANVAS_BG 0x000000
@@ -46,8 +45,10 @@ typedef struct s_scene
 	int		scaled_col;
 	int		default_scale;
 	int		view;
-	double	z_scale;
-	double	default_z;
+	float	z_scale;
+	float	default_z;
+	int		move_x;
+	int		move_y;
 	int		mid_width;
 	int		mid_height;
 	t_alt	**map;
@@ -102,5 +103,6 @@ void	init_scene(t_data *data);
 int		draw_scene(t_data *data);
 void	reset_scene(t_data *data);
 int		zoom(int keysym, t_data *data);
+void	move_view(int keysym, t_data *data);
 
 #endif
