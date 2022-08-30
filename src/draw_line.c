@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:05:33 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/26 19:21:10 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 18:11:20 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 static int	iabs(int x);
 static void	setup(t_line *line, t_point p1, t_point p2);
-static int	get_color(t_point p1, t_point p2);
 
 void	draw_line(t_img *canvas, t_point p1, t_point p2)
 {
 	t_line	line;
-	int		color;
 
-	color = get_color(p1, p2);
 	setup(&line, p1, p2);
 	while (line.i <= (line.dx + line.dy))
 	{
-		put_pixel(canvas, p1.x, p1.y, color);
+		put_pixel(canvas, p1.x, p1.y, p1.color);
 		line.e1 = line.error + line.dy;
 		line.e2 = line.error - line.dx;
 		if (iabs(line.e1) < iabs(line.e2))
@@ -40,15 +37,6 @@ void	draw_line(t_img *canvas, t_point p1, t_point p2)
 		}
 		line.i++;
 	}
-}
-
-static int	get_color(t_point p1, t_point p2)
-{
-	if (p1.z)
-		return (p1.color);
-	if (p2.z)
-		return (p2.color);
-	return (GRID);
 }
 
 static void	setup(t_line *line, t_point p1, t_point p2)
