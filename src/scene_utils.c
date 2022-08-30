@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/29 07:31:38 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 09:39:18 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void	reset_scene(t_data *data)
 	set_scale(data);
 	data->scene.move_x = 0;
 	data->scene.move_y = 0;
+	data->scene.rotation.alpha = 0;
+	data->scene.rotation.beta = 0;
+	data->scene.rotation.gamma = 0;
 }
 
 int	zoom(int keysym, t_data *data)

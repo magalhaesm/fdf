@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 23:09:37 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:09:09 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,27 @@
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 600
 
-# define PARALLEL 1
-# define ISOMETRIC 2
+# define ISOMETRIC 1
+# define ORTHOGRAPHIC 2
 
 typedef struct s_alt
 {
 	int	z;
 	int	color;
 }	t_alt;
+
+typedef struct s_rot
+{
+	double	alpha;
+	double	cos_alpha;
+	double	sin_alpha;
+	double	beta;
+	double	cos_beta;
+	double	sin_beta;
+	double	gamma;
+	double	cos_gamma;
+	double	sin_gamma;
+}	t_rot;
 
 typedef struct s_scene
 {
@@ -51,6 +64,7 @@ typedef struct s_scene
 	int		move_y;
 	int		mid_width;
 	int		mid_height;
+	t_rot	rotation;
 	t_alt	**map;
 }	t_scene;
 
@@ -104,5 +118,10 @@ int		draw_scene(t_data *data);
 void	reset_scene(t_data *data);
 int		zoom(int keysym, t_data *data);
 void	move_view(int keysym, t_data *data);
+void	set_rotation(t_scene *scene);
+void	rotate(t_point *p, t_rot rotation);
+void	rotate_x(int keysym, t_scene *scene);
+void	rotate_y(int keysym, t_scene *scene);
+void	rotate_z(int keysym, t_scene *scene);
 
 #endif

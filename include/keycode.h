@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:17:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/29 07:32:53 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 00:37:48 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define K_D 0x0064
 # define K_E 0x0065
 # define K_I 0x0069
-# define K_P 0x0070
+# define K_O 0x006f
 # define K_Q 0x0071
 # define K_R 0x0072
 # define K_S 0x0073

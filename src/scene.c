@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 21:45:07 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 14:08:59 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	draw_scene(t_data *data)
 	data->canvas.ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
 		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
+	set_rotation(&data->scene);
 	render_scene(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
 		data->canvas.ptr, 0, 0);
@@ -75,6 +76,7 @@ static void	set_point(t_point *p, int row, int col, t_scene scene)
 	p->y = row * scene.scale - scene.scaled_row;
 	p->z = scene.map[row][col].z * scene.scale * scene.z_scale;
 	p->color = scene.map[row][col].color;
+	rotate(p, scene.rotation);
 	if (scene.view == ISOMETRIC)
 		isometric(p);
 	p->x += scene.mid_width + scene.move_x;

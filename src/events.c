@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/29 07:31:25 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 09:57:49 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static int	key_release(int keysym, t_data *data)
 {
 	if (keysym == K_R)
 		reset_scene(data);
-	else if (keysym == K_P)
-		data->scene.view = PARALLEL;
 	else if (keysym == K_I)
 		data->scene.view = ISOMETRIC;
+	else if (keysym == K_O)
+		data->scene.view = ORTHOGRAPHIC;
 	draw_scene(data);
 	return (EXIT_SUCCESS);
 }
@@ -56,6 +56,12 @@ static int	key_press(int keysym, t_data *data)
 		change_altitude(keysym, data);
 	else if (keysym >= K_LEFT && keysym <= K_DOWN)
 		move_view(keysym, data);
+	else if (keysym == K_W || keysym == K_S)
+		rotate_x(keysym, &data->scene);
+	else if (keysym == K_A || keysym == K_D)
+		rotate_y(keysym, &data->scene);
+	else if (keysym == K_Q || keysym == K_E)
+		rotate_z(keysym, &data->scene);
 	draw_scene(data);
 	return (EXIT_SUCCESS);
 }
