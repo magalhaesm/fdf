@@ -6,13 +6,13 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/30 18:11:00 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:19:13 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static int	ft_htoi(char *str);
+static int	to_color(char *str);
 static void	extract(t_alt *altitude, char *data);
 
 void	data_convert(t_scene *scene, int fd)
@@ -63,7 +63,7 @@ static void	extract(t_alt *altitude, char *data)
 	if (hex)
 	{
 		altitude->z = ft_atoi(data);
-		altitude->color = ft_htoi(hex);
+		altitude->color = to_color(hex);
 	}
 	else
 	{
@@ -72,27 +72,27 @@ static void	extract(t_alt *altitude, char *data)
 	}
 }
 
-static int	ft_htoi(char *str)
+static int	to_color(char *str)
 {
+	int	sum;
+	int	symbol;
+	int	pos_value;
 	int	index;
-	int	nbr;
-	int	i;
-	int	n;
 
-	i = 1;
-	n = 0;
-	nbr = 0;
+	pos_value = 1;
+	symbol = 0;
+	sum = 0;
 	index = ft_strlen(str) - 1;
-	while (str[index] != 'x')
+	while (str[index] != 'x' && index)
 	{
-		n = str[index];
-		if (n >= 'A' && n <= 'F')
-			n -= 55;
+		symbol = str[index];
+		if (symbol >= 'A' && symbol <= 'F')
+			symbol -= 55;
 		else
-			n -= 48;
-		nbr += n * i;
+			symbol -= 48;
+		sum += symbol * pos_value;
+		pos_value *= 16;
 		index--;
-		i *= 16;
 	}
-	return (nbr);
+	return (sum);
 }
