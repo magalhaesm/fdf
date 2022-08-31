@@ -6,13 +6,13 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 09:37:45 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 17:48:58 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 14:39:52 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-void	put_pixel(t_img *canvas, int x, int y, int color)
+void	put_pixel(const t_img *canvas, int x, int y, int color)
 {
 	char	*pixel;
 

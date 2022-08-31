@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:17:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/30 00:37:48 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 19:31:27 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@
 # define KEYRELEASE 3
 # define DESTROYNOTIFY 17
 
-typedef enum e_mlx_mask {
+typedef enum e_mlx_mask
+{
 	NOEVENTMASK = 0L,
 	KEYPRESSMASK = (1L << 0),
 	KEYRELEASEMASK = (1L << 1)

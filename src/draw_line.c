@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:05:33 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/30 18:11:20 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/30 22:42:04 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	iabs(int x);
 static void	setup(t_line *line, t_point p1, t_point p2);
 
-void	draw_line(t_img *canvas, t_point p1, t_point p2)
+void	draw_line(const t_img *canvas, t_point p1, t_point p2)
 {
 	t_line	line;
 

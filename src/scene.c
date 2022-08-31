@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/30 14:08:59 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 10:30:28 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 #define COS_30 0.866025
 
 static void	isometric(t_point *p);
-static void	render_scene(t_data *data);
-static void	set_point(t_point *p, int row, int col, t_scene scene);
+static void	render_scene(const t_data *data);
+static void	set_point(t_point *p, int row, int col, const t_scene *scene);
 
 int	draw_scene(t_data *data)
 {
 	data->canvas.ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
 		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
+	render_background(&data->canvas, GRID);
 	set_rotation(&data->scene);
 	render_scene(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
@@ -41,7 +42,7 @@ static void	isometric(t_point *p)
 	p->y = (temp_x + p->y) * SIN_30 - p->z;
 }
 
-static void	render_scene(t_data *data)
+static void	render_scene(const t_data *data)
 {
 	int		col;
 	int		row;
@@ -56,29 +57,29 @@ static void	render_scene(t_data *data)
 		{
 			if (col + 1 < data->scene.cols)
 			{
-				set_point(&p1, row, col + 1, data->scene);
-				set_point(&p2, row, col, data->scene);
+				set_point(&p1, row, col + 1, &data->scene);
+				set_point(&p2, row, col, &data->scene);
 				draw_line(&data->canvas, p1, p2);
 			}
 			if (row + 1 < data->scene.rows)
 			{
-				set_point(&p1, row + 1, col, data->scene);
-				set_point(&p2, row, col, data->scene);
+				set_point(&p1, row + 1, col, &data->scene);
+				set_point(&p2, row, col, &data->scene);
 				draw_line(&data->canvas, p1, p2);
 			}
 		}
 	}
 }
 
-static void	set_point(t_point *p, int row, int col, t_scene scene)
+static void	set_point(t_point *p, int row, int col, const t_scene *scene)
 {
-	p->x = col * scene.scale - scene.scaled_col;
-	p->y = row * scene.scale - scene.scaled_row;
-	p->z = scene.map[row][col].z * scene.scale * scene.z_scale;
-	p->color = scene.map[row][col].color;
-	rotate(p, scene.rotation);
-	if (scene.view == ISOMETRIC)
+	p->x = col * scene->scale - scene->scaled_col;
+	p->y = row * scene->scale - scene->scaled_row;
+	p->z = scene->map[row][col].z * scene->scale * scene->z_scale;
+	p->color = scene->map[row][col].color;
+	rotate(p, scene->rotation);
+	if (scene->view == ISOMETRIC)
 		isometric(p);
-	p->x += scene.mid_width + scene.move_x;
-	p->y += scene.mid_height + scene.move_y;
+	p->x += scene->mid_width + scene->move_x;
+	p->y += scene->mid_height + scene->move_y;
 }
