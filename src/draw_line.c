@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:05:33 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/30 22:42:04 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:00:23 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,35 @@ static void	setup(t_line *line, t_point p1, t_point p2)
 		line->iy = -1;
 	line->error = 0;
 	line->i = 0;
+}
+
+void	put_pixel(const t_img *canvas, int x, int y, int color)
+{
+	char	*pixel;
+
+	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
+		return ;
+	pixel = canvas->addr + (y * canvas->line_len + x * (canvas->bpp / 8));
+	*(int *)pixel = color;
+}
+
+void	render_background(t_img *canvas, int color)
+{
+	int	y;
+	int	x;
+
+	(void) color;
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while (x < WIN_WIDTH)
+		{
+			put_pixel(canvas, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }
 
 static int	iabs(int x)

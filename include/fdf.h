@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/30 22:42:57 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:15:58 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,9 @@ void	generate_map(t_scene *scene);
 void	event_handler(t_data *data);
 void	init_scene(t_data *data);
 int		draw_scene(t_data *data);
-void	reset_scene(t_data *data);
-int		zoom(int keysym, t_data *data);
-void	move_view(int keysym, t_data *data);
+void	reset_scene(t_scene *scene);
+int		zoom(int keysym, t_scene *scene);
+void	translate(int keysym, t_scene *scene);
 void	set_rotation(t_scene *scene);
 void	rotate(t_point *p, t_rot rotation);
 void	rotate_x(int keysym, t_scene *scene);
