@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 14:53:26 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:24:29 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 #define COS_30 0.866025
 
 static void	isometric(t_point *p);
-static void	render_scene(const t_data *data);
+static void	render_scene(const t_mlx *data);
 static void	set_point(t_point *p, int row, int col, const t_scene *scene);
 
-int	draw_scene(t_data *data)
+int	draw_scene(t_mlx *data)
 {
 	data->canvas.ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
@@ -41,7 +41,7 @@ static void	isometric(t_point *p)
 	p->y = (temp_x + p->y) * SIN_30 - p->z;
 }
 
-static void	render_scene(const t_data *data)
+static void	render_scene(const t_mlx *data)
 {
 	int		col;
 	int		row;

@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 15:15:58 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:23:50 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ typedef struct s_point
 	int	color;
 }	t_point;
 
-typedef struct s_data
+typedef struct s_mlx
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	canvas;
 	t_scene	scene;
-}	t_data;
+}	t_mlx;
 
 typedef struct s_line
 {
@@ -112,9 +112,9 @@ void	put_pixel(const t_img *canvas, int x, int y, int color);
 void	free_map(t_scene *scene);
 void	data_convert(t_scene *scene, int fd);
 void	generate_map(t_scene *scene);
-void	event_handler(t_data *data);
-void	init_scene(t_data *data);
-int		draw_scene(t_data *data);
+void	event_handler(t_mlx *data);
+void	init_scene(t_mlx *data);
+int		draw_scene(t_mlx *data);
 void	reset_scene(t_scene *scene);
 int		zoom(int keysym, t_scene *scene);
 void	translate(int keysym, t_scene *scene);

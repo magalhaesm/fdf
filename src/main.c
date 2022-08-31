@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:05:45 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/28 10:21:09 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:24:40 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_mlx	data;
 
 	if (argc != 2)
 	{

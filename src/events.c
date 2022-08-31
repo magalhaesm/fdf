@@ -6,18 +6,18 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 15:17:20 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:24:18 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static int	quit(t_data *data);
-static int	key_press(int keysym, t_data *data);
-static int	key_release(int keysym, t_data *data);
+static int	quit(t_mlx *data);
+static int	key_press(int keysym, t_mlx *data);
+static int	key_release(int keysym, t_mlx *data);
 static int	change_altitude(int keysym, t_scene *scene);
 
-void	event_handler(t_data *data)
+void	event_handler(t_mlx *data)
 {
 	mlx_expose_hook(data->win_ptr, draw_scene, data);
 	mlx_hook(data->win_ptr, DESTROYNOTIFY, NOEVENTMASK, quit, data);
@@ -34,7 +34,7 @@ static int	change_altitude(int keysym, t_scene *scene)
 	return (EXIT_SUCCESS);
 }
 
-static int	key_release(int keysym, t_data *data)
+static int	key_release(int keysym, t_mlx *data)
 {
 	if (keysym == K_R)
 		reset_scene(&data->scene);
@@ -48,7 +48,7 @@ static int	key_release(int keysym, t_data *data)
 	return (EXIT_SUCCESS);
 }
 
-static int	key_press(int keysym, t_data *data)
+static int	key_press(int keysym, t_mlx *data)
 {
 	if (keysym >= K_LEFT && keysym <= K_DOWN)
 		translate(keysym, &data->scene);
@@ -66,7 +66,7 @@ static int	key_press(int keysym, t_data *data)
 	return (EXIT_SUCCESS);
 }
 
-static int	quit(t_data *data)
+static int	quit(t_mlx *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
