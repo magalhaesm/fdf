@@ -6,34 +6,34 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:35:09 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 14:51:04 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:34:25 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void set_alpha(t_point *p, t_rot r);
-static void set_beta(t_point *p, t_rot r);
-static void set_gamma(t_point *p, t_rot r);
+static void set_alpha(t_point *p, t_cache r);
+static void set_beta(t_point *p, t_cache r);
+static void set_gamma(t_point *p, t_cache r);
 
-void	rotate(t_point *p, t_rot rotation)
+void	rotate(t_point *p, t_cache cache)
 {
-	set_alpha(p, rotation);
-	set_beta(p, rotation);
-	set_gamma(p, rotation);
+	set_alpha(p, cache);
+	set_beta(p, cache);
+	set_gamma(p, cache);
 }
 
-void	set_rotation(t_scene *scene)
+void	set_rotation(t_cache *cache)
 {
-	scene->rotation.cos_alpha = cos(scene->rotation.alpha);
-	scene->rotation.sin_alpha = sin(scene->rotation.alpha);
-	scene->rotation.cos_beta = cos(scene->rotation.beta);
-	scene->rotation.sin_beta = sin(scene->rotation.beta);
-	scene->rotation.cos_gamma = cos(scene->rotation.gamma);
-	scene->rotation.sin_gamma = sin(scene->rotation.gamma);
+	cache->cos_alpha = cos(cache->alpha);
+	cache->sin_alpha = sin(cache->alpha);
+	cache->cos_beta = cos(cache->beta);
+	cache->sin_beta = sin(cache->beta);
+	cache->cos_gamma = cos(cache->gamma);
+	cache->sin_gamma = sin(cache->gamma);
 }
 
-static void set_alpha(t_point *p, t_rot r)
+static void set_alpha(t_point *p, t_cache r)
 {
 	int	temp_y;
 
@@ -42,7 +42,7 @@ static void set_alpha(t_point *p, t_rot r)
 	p->z = temp_y * r.sin_alpha + p->z * r.cos_alpha;
 }
 
-static void set_beta(t_point *p, t_rot r)
+static void set_beta(t_point *p, t_cache r)
 {
 	int	temp_x;
 
@@ -51,7 +51,7 @@ static void set_beta(t_point *p, t_rot r)
 	p->z = -temp_x * r.sin_beta + p->z * r.cos_beta;
 }
 
-static void set_gamma(t_point *p, t_rot r)
+static void set_gamma(t_point *p, t_cache r)
 {
 	int	temp_x;
 

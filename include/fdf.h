@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 15:23:50 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/08/31 15:33:25 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_alt
 	int	color;
 }	t_alt;
 
-typedef struct s_rot
+typedef struct s_cache
 {
 	double	alpha;
 	double	cos_alpha;
@@ -47,7 +47,7 @@ typedef struct s_rot
 	double	gamma;
 	double	cos_gamma;
 	double	sin_gamma;
-}	t_rot;
+}	t_cache;
 
 typedef struct s_scene
 {
@@ -64,7 +64,7 @@ typedef struct s_scene
 	int		move_y;
 	int		mid_width;
 	int		mid_height;
-	t_rot	rotation;
+	t_cache	cache;
 	t_alt	**map;
 }	t_scene;
 
@@ -118,8 +118,8 @@ int		draw_scene(t_mlx *data);
 void	reset_scene(t_scene *scene);
 int		zoom(int keysym, t_scene *scene);
 void	translate(int keysym, t_scene *scene);
-void	set_rotation(t_scene *scene);
-void	rotate(t_point *p, t_rot rotation);
+void	set_rotation(t_cache *cache);
+void	rotate(t_point *p, t_cache cache);
 void	rotate_x(int keysym, t_scene *scene);
 void	rotate_y(int keysym, t_scene *scene);
 void	rotate_z(int keysym, t_scene *scene);
