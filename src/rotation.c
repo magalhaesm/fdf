@@ -6,15 +6,15 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:35:09 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/01 10:41:26 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:55:12 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static void set_alpha(t_point *p, const t_cache *cache);
-static void set_beta(t_point *p, const t_cache *cache);
-static void set_gamma(t_point *p, const t_cache *cache);
+static void	set_alpha(t_point *p, const t_cache *cache);
+static void	set_beta(t_point *p, const t_cache *cache);
+static void	set_gamma(t_point *p, const t_cache *cache);
 
 void	rotate(t_point *p, const t_cache *cache)
 {
@@ -33,7 +33,7 @@ void	set_rotation(t_cache *cache)
 	cache->sin_gamma = sin(cache->gamma);
 }
 
-static void set_alpha(t_point *p, const t_cache *cache)
+static void	set_alpha(t_point *p, const t_cache *cache)
 {
 	int	temp_y;
 
@@ -42,7 +42,7 @@ static void set_alpha(t_point *p, const t_cache *cache)
 	p->z = temp_y * cache->sin_alpha + p->z * cache->cos_alpha;
 }
 
-static void set_beta(t_point *p, const t_cache *cache)
+static void	set_beta(t_point *p, const t_cache *cache)
 {
 	int	temp_x;
 
@@ -51,7 +51,7 @@ static void set_beta(t_point *p, const t_cache *cache)
 	p->z = -temp_x * cache->sin_beta + p->z * cache->cos_beta;
 }
 
-static void set_gamma(t_point *p, const t_cache *cache)
+static void	set_gamma(t_point *p, const t_cache *cache)
 {
 	int	temp_x;
 

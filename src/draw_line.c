@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:05:33 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 15:00:23 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/01 23:00:39 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 
 static int	iabs(int x);
 static void	setup(t_line *line, t_point p1, t_point p2);
+static int	lerp(int color, int color_end, double percentage);
+static int	get_color(const t_point *p1, const t_point *p2, int pos, int dist);
 
 void	draw_line(const t_img *canvas, t_point p1, t_point p2)
 {
 	t_line	line;
+	int		distance;
+	int		color;
 
 	setup(&line, p1, p2);
-	while (line.i <= (line.dx + line.dy))
+	distance = line.dx + line.dy;
+	while (line.i <= distance)
 	{
-		put_pixel(canvas, p1.x, p1.y, p1.color);
+		color = get_color(&p1, &p2, line.i, distance);
+		put_pixel(canvas, p1.x, p1.y, color);
 		line.e1 = line.error + line.dy;
 		line.e2 = line.error - line.dx;
 		if (iabs(line.e1) < iabs(line.e2))
@@ -55,33 +61,23 @@ static void	setup(t_line *line, t_point p1, t_point p2)
 	line->i = 0;
 }
 
-void	put_pixel(const t_img *canvas, int x, int y, int color)
+static int	lerp(int p1_color, int p2_color, double percentage)
 {
-	char	*pixel;
-
-	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
-		return ;
-	pixel = canvas->addr + (y * canvas->line_len + x * (canvas->bpp / 8));
-	*(int *)pixel = color;
+	return ((1 - percentage) * p1_color + percentage * p2_color);
 }
 
-void	render_background(t_img *canvas, int color)
+static int	get_color(const t_point *p1, const t_point *p2, int pos, int dist)
 {
-	int	y;
-	int	x;
+	int		red;
+	int		green;
+	int		blue;
+	double	per;
 
-	(void) color;
-	y = 0;
-	while (y < WIN_HEIGHT)
-	{
-		x = 0;
-		while (x < WIN_WIDTH)
-		{
-			put_pixel(canvas, x, y, color);
-			x++;
-		}
-		y++;
-	}
+	per = (double)pos / dist;
+	red = lerp((p1->color >> 16) & 0xff, (p2->color >> 16) & 0xff, per);
+	green = lerp((p1->color >> 8) & 0xff, (p2->color >> 8) & 0xff, per);
+	blue = lerp(p1->color & 0xff, p2->color & 0xff, per);
+	return (red << 16 | green << 8 | blue);
 }
 
 static int	iabs(int x)

@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/30 19:19:13 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:14:20 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ static void	extract(t_alt *altitude, char *data)
 	else
 	{
 		altitude->z = ft_atoi(data);
-		altitude->color = GRID;
+		if (altitude->z)
+			altitude->color = 0x990000;
+		else
+			altitude->color = GRID;
 	}
 }
 
