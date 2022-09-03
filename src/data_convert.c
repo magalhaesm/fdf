@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/03 09:54:05 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/03 11:40:22 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	data_convert(t_scene *scene, int fd)
 	{
 		col = 0;
 		line = get_next_line(fd);
-		buffer = ft_split(line, ' ');
+		buffer = ft_split(ft_strtrim(line, "\n"), ' ');
 		free(line);
 		while (col < scene->cols)
 		{
@@ -62,7 +62,7 @@ static void	extract(t_alt *altitude, char *data)
 	hex = ft_strchr(data, ',');
 	altitude->z = ft_atoi(data);
 	if (hex)
-		altitude->color = to_color(hex);
+		altitude->color = to_color(&hex[1]);
 	else
 	{
 		if (altitude->z)
