@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/01 21:14:20 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/03 09:54:05 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,11 @@ static void	extract(t_alt *altitude, char *data)
 	char	*hex;
 
 	hex = ft_strchr(data, ',');
+	altitude->z = ft_atoi(data);
 	if (hex)
-	{
-		altitude->z = ft_atoi(data);
 		altitude->color = to_color(hex);
-	}
 	else
 	{
-		altitude->z = ft_atoi(data);
 		if (altitude->z)
 			altitude->color = 0x990000;
 		else
@@ -89,8 +86,8 @@ static int	to_color(char *str)
 	while (str[index] != 'x' && index)
 	{
 		symbol = str[index];
-		if (symbol >= 'A' && symbol <= 'F')
-			symbol -= 55;
+		if (symbol >= 'a' && symbol <= 'f')
+			symbol -= 87;
 		else
 			symbol -= 48;
 		sum += symbol * pos_value;
