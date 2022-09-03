@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 15:35:15 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/02 22:06:50 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ void	init_scene(t_mlx *data)
 		WIN_WIDTH, WIN_HEIGHT, "Fil de Fer");
 	data->scene.mid_width = WIN_WIDTH / 2;
 	data->scene.mid_height = WIN_HEIGHT / 2;
-	data->scene.default_scale = get_scale(data->scene.rows, data->scene.cols);
-	data->scene.default_z = 0.1;
+	data->scene.std_scale = get_scale(data->scene.rows, data->scene.cols);
+	data->scene.std_z = 0.1;
 	data->scene.view = ISOMETRIC;
 	reset_scene(&data->scene);
 }
 
 void	reset_scene(t_scene *scene)
 {
-	scene->scale = scene->default_scale;
-	scene->z_scale = scene->default_z;
+	scene->scale = scene->std_scale;
+	scene->z_scale = scene->std_z;
 	set_scale(scene);
 	scene->move_x = 0;
 	scene->move_y = 0;
@@ -51,6 +51,8 @@ int	zoom(int keysym, t_scene *scene)
 		scene->scale += 1;
 	else
 		scene->scale -= 1;
+	if (scene->scale < 2)
+		scene->scale = 1;
 	set_scale(scene);
 	return (EXIT_SUCCESS);
 }

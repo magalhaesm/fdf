@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/01 22:43:25 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:54:51 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ typedef struct s_scene
 	int		scale;
 	int		scaled_row;
 	int		scaled_col;
-	int		default_scale;
+	int		std_scale;
 	int		view;
 	float	z_scale;
-	float	default_z;
+	float	std_z;
 	int		move_x;
 	int		move_y;
 	int		mid_width;
@@ -83,6 +83,7 @@ typedef struct s_point
 	int	y;
 	int	z;
 	int	color;
+	int	rgb[3];
 }	t_point;
 
 typedef struct s_mlx
@@ -95,14 +96,15 @@ typedef struct s_mlx
 
 typedef struct s_line
 {
-	int	dx;
-	int	dy;
-	int	ix;
-	int	iy;
-	int	error;
-	int	e1;
-	int	e2;
-	int	i;
+	int		dx;
+	int		dy;
+	int		ix;
+	int		iy;
+	int		err;
+	int		e1;
+	int		e2;
+	int		pos;
+	int		len;
 }	t_line;
 
 void	load_map(t_scene *scene, char *file);
