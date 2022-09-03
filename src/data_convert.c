@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/03 11:40:22 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/03 13:44:08 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	data_convert(t_scene *scene, int fd)
 	int		row;
 	int		col;
 	char	*line;
+	char	*trim;
 	char	**buffer;
 
 	row = 0;
@@ -27,17 +28,18 @@ void	data_convert(t_scene *scene, int fd)
 	{
 		col = 0;
 		line = get_next_line(fd);
-		buffer = ft_split(ft_strtrim(line, "\n"), ' ');
-		free(line);
+		trim = ft_strtrim(line, "\n");
+		buffer = ft_split(trim, ' ');
 		while (col < scene->cols)
 		{
 			extract(&scene->map[row][col], buffer[col]);
 			free(buffer[col]);
 			col++;
 		}
-		row++;
-		free(buffer[col]);
 		free(buffer);
+		free(trim);
+		free(line);
+		row++;
 	}
 	free(get_next_line(fd));
 }
@@ -62,7 +64,7 @@ static void	extract(t_alt *altitude, char *data)
 	hex = ft_strchr(data, ',');
 	altitude->z = ft_atoi(data);
 	if (hex)
-		altitude->color = to_color(&hex[1]);
+		altitude->color = to_color(hex);
 	else
 	{
 		if (altitude->z)

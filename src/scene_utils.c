@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/02 22:06:50 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/03 14:05:37 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	zoom(int keysym, t_scene *scene)
 	else
 		scene->scale -= 1;
 	if (scene->scale < 2)
-		scene->scale = 1;
+		scene->scale = 2;
 	set_scale(scene);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/02 20:54:51 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/03 13:53:19 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,15 @@ typedef struct s_mlx
 
 typedef struct s_line
 {
-	int		dx;
-	int		dy;
-	int		ix;
-	int		iy;
-	int		err;
-	int		e1;
-	int		e2;
-	int		pos;
-	int		len;
+	int	dx;
+	int	dy;
+	int	ix;
+	int	iy;
+	int	err;
+	int	e1;
+	int	e2;
+	int	pos;
+	int	len;
 }	t_line;
 
 void	load_map(t_scene *scene, char *file);
