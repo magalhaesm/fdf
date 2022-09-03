@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/01 18:57:52 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/03 16:21:19 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	change_altitude(int keysym, t_scene *scene);
 
 void	event_handler(t_mlx *data)
 {
+	mlx_expose_hook(data->win_ptr, draw_scene, data);
 	mlx_hook(data->win_ptr, DESTROYNOTIFY, NOEVENTMASK, quit, data);
 	mlx_hook(data->win_ptr, KEYPRESS, KEYPRESSMASK, key_press, data);
 	mlx_key_hook(data->win_ptr, key_release, data);
