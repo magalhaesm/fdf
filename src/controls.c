@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:43:39 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 17:26:52 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:13:04 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ static void	put_controls(t_mlx *data)
 	mlx = data->mlx_ptr;
 	win = data->win_ptr;
 	mlx_string_put(mlx, win, 60, 40, TITLE, "CONTROLS");
-	mlx_string_put(mlx, win, 30, 80, TITLE, "Moves");
+	mlx_string_put(mlx, win, 30, 80, TITLE, "Camera");
 	mlx_string_put(mlx, win, 50, 100, TEXT, "Up: UP arrow");
 	mlx_string_put(mlx, win, 50, 120, TEXT, "Down: DOWN arrow");
 	mlx_string_put(mlx, win, 50, 140, TEXT, "Left: LEFT arrow");
 	mlx_string_put(mlx, win, 50, 160, TEXT, "Right: RIGHT arrow");
-	mlx_string_put(mlx, win, 30, 200, TITLE, "Rotations");
+	mlx_string_put(mlx, win, 30, 200, TITLE, "Rotation");
 	mlx_string_put(mlx, win, 50, 220, TEXT, "X-axis: W / S");
 	mlx_string_put(mlx, win, 50, 240, TEXT, "Y-axis: A / D");
 	mlx_string_put(mlx, win, 50, 260, TEXT, "Z-axis: Q / E");
@@ -89,9 +89,9 @@ static void	end_controls(t_mlx *data)
 
 	mlx = data->mlx_ptr;
 	win = data->win_ptr;
-	mlx_string_put(mlx, win, 30, 460, TITLE, "Projections");
+	mlx_string_put(mlx, win, 30, 460, TITLE, "Projection");
 	mlx_string_put(mlx, win, 50, 480, TEXT, "Isometric: I");
-	mlx_string_put(mlx, win, 50, 500, TEXT, "Orthografic: O");
+	mlx_string_put(mlx, win, 50, 500, TEXT, "Orthographic: O");
 	mlx_string_put(mlx, win, 30, 540, TITLE, "Reset: R");
 	mlx_string_put(mlx, win, 50, 580, YELLOW, "Marcelo Magalhaes");
 	mlx_string_put(mlx, win, 70, 600, YELLOW, "mdias-ma");
