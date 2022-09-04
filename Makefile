@@ -11,7 +11,6 @@ OBJS_PATH	= obj
 SRCS		= $(addprefix $(SRCS_PATH)/, $(SOURCES))
 OBJS		= $(addprefix $(OBJS_PATH)/, $(SOURCES:.c=.o))
 
-# CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 CFLAGS		= -Wall -Wextra -Werror -O3
 RM			= rm -f
 
@@ -21,6 +20,8 @@ RESET		= \033[0m
 LOG			= printf "$(CYAN)info:$(RESET) %s\n"
 
 all:		$(NAME)
+
+bonus: all
 
 norma:
 	@norminette $(SRCS_PATH) include
