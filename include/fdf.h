@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/03 13:53:19 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 14:06:45 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 # include "../libft/libft.h"
 # include "keycode.h"
 
-# define GRID 0x00FFFF
+# define GRID 0x00dddd
+# define STD_Z 0x990000
 # define CANVAS_BG 0x000000
 
-# define WIN_WIDTH 1024
-# define WIN_HEIGHT 600
+# define CTRL_WIDTH 200
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 640
 
 # define ISOMETRIC 1
 # define ORTHOGRAPHIC 2
@@ -75,6 +77,9 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		width;
+	int		height;
+	int		x;
 }	t_img;
 
 typedef struct s_point
@@ -91,7 +96,9 @@ typedef struct s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	canvas;
+	t_img	legend;
 	t_scene	scene;
+	t_bool	menu;
 }	t_mlx;
 
 typedef struct s_line
@@ -116,6 +123,7 @@ void	event_handler(t_mlx *data);
 void	init_scene(t_mlx *data);
 int		draw_scene(t_mlx *data);
 void	reset_scene(t_scene *scene);
+void	resize(t_mlx *data);
 int		zoom(int keysym, t_scene *scene);
 void	translate(int keysym, t_scene *scene);
 void	set_rotation(t_cache *cache);
@@ -123,5 +131,7 @@ void	rotate(t_point *p, const t_cache *cache);
 void	rotate_x(int keysym, t_scene *scene);
 void	rotate_y(int keysym, t_scene *scene);
 void	rotate_z(int keysym, t_scene *scene);
+void	render_background(t_img *image, int color);
+void	show_controls(t_mlx *data);
 
 #endif

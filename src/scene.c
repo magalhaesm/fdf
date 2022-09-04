@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 17:27:41 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 13:56:19 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,34 @@ static void	set_point(t_point *p, int row, int col, const t_scene *scene);
 
 int	draw_scene(t_mlx *data)
 {
-	data->canvas.ptr = mlx_new_image(data->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	data->canvas.ptr = mlx_new_image(data->mlx_ptr, data->canvas.width, \
+		WIN_HEIGHT);
 	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
 		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
 	set_rotation(&data->scene.cache);
 	render_scene(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
-		data->canvas.ptr, 0, 0);
+		data->canvas.ptr, data->canvas.x, 0);
 	mlx_destroy_image(data->mlx_ptr, data->canvas.ptr);
 	return (EXIT_SUCCESS);
+}
+
+void	init_scene(t_mlx *data)
+{
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
+	{
+		ft_printf("No X server found.\n");
+		exit(EXIT_FAILURE);
+	}
+	data->win_ptr = mlx_new_window(data->mlx_ptr, \
+		WIN_WIDTH, WIN_HEIGHT, "Fil de Fer");
+	data->menu = FALSE;
+	data->legend.width = CTRL_WIDTH;
+	data->scene.std_z = 0.1;
+	data->scene.view = ISOMETRIC;
+	resize(data);
+	reset_scene(&data->scene);
 }
 
 static void	isometric(t_point *p)

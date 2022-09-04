@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 22:17:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/31 18:48:40 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:54:41 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define KEYCODE_H
 
 # define K_ESCAPE        0xff1b
+# define K_SLASH         0x002f
 
 # define K_LEFT          0xff51
 # define K_UP            0xff52

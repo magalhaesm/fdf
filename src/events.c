@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 18:18:06 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/03 16:21:19 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 14:05:28 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static int	key_release(int keysym, t_mlx *data)
 		data->scene.view = ISOMETRIC;
 	else if (keysym == K_O)
 		data->scene.view = ORTHOGRAPHIC;
+	else if (keysym == K_SLASH)
+		show_controls(data);
 	else if (keysym == K_ESCAPE)
 		quit(data);
 	draw_scene(data);

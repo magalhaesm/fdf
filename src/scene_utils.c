@@ -6,31 +6,30 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/03 14:05:37 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 14:21:42 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
+static int	get_scale(t_mlx *data);
 static void	set_scale(t_scene *scene);
-static int	get_scale(int row, int col);
 
-void	init_scene(t_mlx *data)
+void	resize(t_mlx *data)
 {
-	data->mlx_ptr = mlx_init();
-	if (data->mlx_ptr == NULL)
+	if (data->menu)
 	{
-		ft_printf("No X server found.\n");
-		exit(EXIT_FAILURE);
+		data->canvas.width -= data->legend.width;
+		data->canvas.x = data->legend.width;
 	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, \
-		WIN_WIDTH, WIN_HEIGHT, "Fil de Fer");
-	data->scene.mid_width = WIN_WIDTH / 2;
+	else
+	{
+		data->canvas.width = WIN_WIDTH;
+		data->canvas.x = 0;
+	}
+	data->scene.mid_width = data->canvas.width / 2;
 	data->scene.mid_height = WIN_HEIGHT / 2;
-	data->scene.std_scale = get_scale(data->scene.rows, data->scene.cols);
-	data->scene.std_z = 0.1;
-	data->scene.view = ISOMETRIC;
-	reset_scene(&data->scene);
+	data->scene.std_scale = get_scale(data);
 }
 
 void	reset_scene(t_scene *scene)
@@ -63,13 +62,13 @@ static void	set_scale(t_scene *scene)
 	scene->scaled_row = (scene->rows * scene->scale) / 2;
 }
 
-static int	get_scale(int row, int col)
+static int	get_scale(t_mlx *data)
 {
 	int	scale;
 	int	area;
 
-	area = WIN_WIDTH * WIN_HEIGHT / 4;
-	scale = area / (row * col);
+	area = data->canvas.width * WIN_HEIGHT / 4;
+	scale = area / (data->scene.rows * data->scene.cols);
 	scale = sqrt(scale);
 	if (scale < 2)
 		return (2);

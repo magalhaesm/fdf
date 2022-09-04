@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/03 13:44:08 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:57:34 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	extract(t_alt *altitude, char *data)
 	else
 	{
 		if (altitude->z)
-			altitude->color = 0x990000;
+			altitude->color = STD_Z;
 		else
 			altitude->color = GRID;
 	}

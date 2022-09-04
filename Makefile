@@ -2,7 +2,7 @@ NAME		= fdf
 INCLUDES	= fdf.h keycode.h
 SOURCES		= main.c load_data.c scene.c draw_line.c draw_utils.c events.c \
 						data_convert.c scene_utils.c rotation.c rotation_utils.c \
-						translation.c
+						translation.c controls.c
 
 LIBFT		= ./libft/libft.a
 
