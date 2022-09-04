@@ -6,15 +6,14 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:43:39 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 16:44:59 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:48:41 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-#define GRAY 0x22333b
 #define BLUE 0x011627
-#define FONT 0xadb5bd
+#define TEXT 0xadb5bd
 #define TITLE 0xfdfffc
 #define YELLOW 0xff9f1c
 
@@ -67,20 +66,20 @@ static void	put_controls(t_mlx *data)
 	win = data->win_ptr;
 	mlx_string_put(mlx, win, 60, 40, TITLE, "CONTROLS");
 	mlx_string_put(mlx, win, 30, 80, TITLE, "Moves");
-	mlx_string_put(mlx, win, 50, 100, FONT, "Up: UP arrow");
-	mlx_string_put(mlx, win, 50, 120, FONT, "Down: DOWN arrow");
-	mlx_string_put(mlx, win, 50, 140, FONT, "Left: LEFT arrow");
-	mlx_string_put(mlx, win, 50, 160, FONT, "Right: RIGHT arrow");
+	mlx_string_put(mlx, win, 50, 100, TEXT, "Up: UP arrow");
+	mlx_string_put(mlx, win, 50, 120, TEXT, "Down: DOWN arrow");
+	mlx_string_put(mlx, win, 50, 140, TEXT, "Left: LEFT arrow");
+	mlx_string_put(mlx, win, 50, 160, TEXT, "Right: RIGHT arrow");
 	mlx_string_put(mlx, win, 30, 200, TITLE, "Rotations");
-	mlx_string_put(mlx, win, 50, 220, FONT, "X-axis: W / S");
-	mlx_string_put(mlx, win, 50, 240, FONT, "Y-axis: A / D");
-	mlx_string_put(mlx, win, 50, 260, FONT, "Z-axis: Q / E");
+	mlx_string_put(mlx, win, 50, 220, TEXT, "X-axis: W / S");
+	mlx_string_put(mlx, win, 50, 240, TEXT, "Y-axis: A / D");
+	mlx_string_put(mlx, win, 50, 260, TEXT, "Z-axis: Q / E");
 	mlx_string_put(mlx, win, 30, 300, TITLE, "Zoom");
-	mlx_string_put(mlx, win, 50, 320, FONT, "Zoom in: +");
-	mlx_string_put(mlx, win, 50, 340, FONT, "Zoom out: -");
+	mlx_string_put(mlx, win, 50, 320, TEXT, "Zoom in: +");
+	mlx_string_put(mlx, win, 50, 340, TEXT, "Zoom out: -");
 	mlx_string_put(mlx, win, 30, 380, TITLE, "Altitude");
-	mlx_string_put(mlx, win, 50, 400, FONT, "Increase: [");
-	mlx_string_put(mlx, win, 50, 420, FONT, "Decrease: ]");
+	mlx_string_put(mlx, win, 50, 400, TEXT, "Increase: [");
+	mlx_string_put(mlx, win, 50, 420, TEXT, "Decrease: ]");
 }
 
 static void	end_controls(t_mlx *data)
@@ -91,8 +90,8 @@ static void	end_controls(t_mlx *data)
 	mlx = data->mlx_ptr;
 	win = data->win_ptr;
 	mlx_string_put(mlx, win, 30, 460, TITLE, "Projections");
-	mlx_string_put(mlx, win, 50, 480, FONT, "Isometric: I");
-	mlx_string_put(mlx, win, 50, 500, FONT, "Orthografic: O");
+	mlx_string_put(mlx, win, 50, 480, TEXT, "Isometric: I");
+	mlx_string_put(mlx, win, 50, 500, TEXT, "Orthografic: O");
 	mlx_string_put(mlx, win, 30, 540, TITLE, "Reset: R");
 	mlx_string_put(mlx, win, 50, 580, YELLOW, "author: mdias-ma");
 	mlx_string_put(mlx, win, 50, 600, YELLOW, "Marcelo Magalhaes");
