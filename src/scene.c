@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 13:56:19 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 16:02:19 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	isometric(t_point *p);
 static void	render_scene(const t_mlx *data);
 static void	set_point(t_point *p, int row, int col, const t_scene *scene);
 
-int	draw_scene(t_mlx *data)
+void	draw_scene(t_mlx *data)
 {
 	data->canvas.ptr = mlx_new_image(data->mlx_ptr, data->canvas.width, \
 		WIN_HEIGHT);
@@ -30,7 +30,6 @@ int	draw_scene(t_mlx *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
 		data->canvas.ptr, data->canvas.x, 0);
 	mlx_destroy_image(data->mlx_ptr, data->canvas.ptr);
-	return (EXIT_SUCCESS);
 }
 
 void	init_scene(t_mlx *data)
@@ -44,7 +43,6 @@ void	init_scene(t_mlx *data)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 		WIN_WIDTH, WIN_HEIGHT, "Fil de Fer");
 	data->menu = FALSE;
-	data->legend.width = CTRL_WIDTH;
 	data->scene.std_z = 0.1;
 	data->scene.view = ISOMETRIC;
 	resize(data);

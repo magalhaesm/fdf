@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 14:06:45 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 14:30:29 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,10 @@ void	data_convert(t_scene *scene, int fd);
 void	generate_map(t_scene *scene);
 void	event_handler(t_mlx *data);
 void	init_scene(t_mlx *data);
-int		draw_scene(t_mlx *data);
+void	draw_scene(t_mlx *data);
 void	reset_scene(t_scene *scene);
 void	resize(t_mlx *data);
-int		zoom(int keysym, t_scene *scene);
+void	zoom(int keysym, t_scene *scene);
 void	translate(int keysym, t_scene *scene);
 void	set_rotation(t_cache *cache);
 void	rotate(t_point *p, const t_cache *cache);
@@ -133,5 +133,6 @@ void	rotate_y(int keysym, t_scene *scene);
 void	rotate_z(int keysym, t_scene *scene);
 void	render_background(t_img *image, int color);
 void	show_controls(t_mlx *data);
+int		redraw(t_mlx *data);
 
 #endif
