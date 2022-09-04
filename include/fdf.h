@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 14:30:29 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 20:26:54 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 # define GRID 0x00dddd
 # define STD_Z 0x990000
-# define CANVAS_BG 0x000000
 
 # define CTRL_WIDTH 200
 # define WIN_WIDTH 1280
