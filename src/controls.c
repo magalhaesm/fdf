@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:43:39 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 19:13:04 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:58:00 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,6 @@ static void	end_controls(t_mlx *data)
 	mlx_string_put(mlx, win, 50, 480, TEXT, "Isometric: I");
 	mlx_string_put(mlx, win, 50, 500, TEXT, "Orthographic: O");
 	mlx_string_put(mlx, win, 30, 540, TITLE, "Reset: R");
-	mlx_string_put(mlx, win, 50, 580, YELLOW, "Marcelo Magalhaes");
-	mlx_string_put(mlx, win, 70, 600, YELLOW, "mdias-ma");
+	mlx_string_put(mlx, win, 50, 590, YELLOW, "Marcelo Magalhaes");
+	mlx_string_put(mlx, win, 70, 610, YELLOW, "mdias-ma");
 }
