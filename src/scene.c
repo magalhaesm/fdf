@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 20:37:04 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 08:37:38 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_scene(t_mlx *data)
 	if (data->mlx_ptr == NULL)
 	{
 		ft_printf("No X server found.\n");
+		destroy_map(&data->scene);
 		exit(EXIT_FAILURE);
 	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \

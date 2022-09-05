@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 20:26:54 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 08:36:25 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	draw_line(const t_img *canvas, t_point p1, t_point p2);
 void	put_pixel(const t_img *canvas, int x, int y, int color);
 void	data_convert(t_scene *scene, int fd);
 void	generate_map(t_scene *scene);
+void	destroy_map(t_scene *scene);
 void	event_handler(t_mlx *data);
 void	init_scene(t_mlx *data);
 void	draw_scene(t_mlx *data);

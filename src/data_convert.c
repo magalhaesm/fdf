@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/03 21:57:34 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 08:36:56 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ void	generate_map(t_scene *scene)
 		scene->map[row] = ft_calloc(sizeof(t_alt), scene->cols);
 		row++;
 	}
+}
+
+void	destroy_map(t_scene *scene)
+{
+	int	row;
+
+	row = 0;
+	while (row < scene->rows)
+		free(scene->map[row++]);
+	free(scene->map);
 }
 
 static void	extract(t_alt *altitude, char *data)
