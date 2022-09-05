@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:48:03 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/08/29 07:28:19 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:09:59 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	load_map(t_scene *scene, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("No file %s\n", file);
+		ft_printf("Error: No file %s\n", file);
 		exit(EXIT_FAILURE);
 	}
 	get_map_dimensions(scene, fd);
@@ -98,13 +98,13 @@ static void	check_map_error(t_scene *scene, int fd)
 {
 	if (scene->cols == -1)
 	{
-		ft_printf("Found wrong line length. Exiting.\n");
+		ft_printf("Error: Found wrong line length\n");
 		close(fd);
 		exit(EXIT_FAILURE);
 	}
 	if (scene->rows == 0)
 	{
-		ft_printf("No data found.\n");
+		ft_printf("Error: No data found\n");
 		close(fd);
 		exit(EXIT_FAILURE);
 	}

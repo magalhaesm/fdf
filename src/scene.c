@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/05 08:37:38 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:06:01 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_scene(t_mlx *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 	{
-		ft_printf("No X server found.\n");
+		ft_printf("Error: No X server found.\n");
 		destroy_map(&data->scene);
 		exit(EXIT_FAILURE);
 	}
@@ -77,14 +77,14 @@ static void	render_scene(const t_mlx *data)
 		{
 			if (col + 1 < data->scene.cols)
 			{
-				set_point(&p1, row, col + 1, &data->scene);
-				set_point(&p2, row, col, &data->scene);
+				set_point(&p1, row, col, &data->scene);
+				set_point(&p2, row, col + 1, &data->scene);
 				draw_line(&data->canvas, p1, p2);
 			}
 			if (row + 1 < data->scene.rows)
 			{
-				set_point(&p1, row + 1, col, &data->scene);
-				set_point(&p2, row, col, &data->scene);
+				set_point(&p1, row, col, &data->scene);
+				set_point(&p2, row + 1, col, &data->scene);
 				draw_line(&data->canvas, p1, p2);
 			}
 		}
