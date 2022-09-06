@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:35:09 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/01 21:55:12 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:45:16 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	set_alpha(t_point *p, const t_cache *cache)
 	int	temp_y;
 
 	temp_y = p->y;
-	p->y = temp_y * cache->cos_alpha - p->z * cache->sin_alpha;
-	p->z = temp_y * cache->sin_alpha + p->z * cache->cos_alpha;
+	p->y = temp_y * cache->cos_alpha + p->z * cache->sin_alpha;
+	p->z = temp_y * -cache->sin_alpha + p->z * cache->cos_alpha;
 }
 
 static void	set_beta(t_point *p, const t_cache *cache)
@@ -47,8 +47,8 @@ static void	set_beta(t_point *p, const t_cache *cache)
 	int	temp_x;
 
 	temp_x = p->x;
-	p->x = temp_x * cache->cos_beta + p->z * cache->sin_beta;
-	p->z = -temp_x * cache->sin_beta + p->z * cache->cos_beta;
+	p->x = temp_x * cache->cos_beta + p->z * -cache->sin_beta;
+	p->z = temp_x * cache->sin_beta + p->z * cache->cos_beta;
 }
 
 static void	set_gamma(t_point *p, const t_cache *cache)
@@ -56,6 +56,6 @@ static void	set_gamma(t_point *p, const t_cache *cache)
 	int	temp_x;
 
 	temp_x = p->x;
-	p->x = temp_x * cache->cos_gamma - p->y * cache->sin_gamma;
-	p->y = temp_x * cache->sin_gamma + p->y * cache->cos_gamma;
+	p->x = temp_x * cache->cos_gamma + p->y * cache->sin_gamma;
+	p->y = temp_x * -cache->sin_gamma + p->y * cache->cos_gamma;
 }
