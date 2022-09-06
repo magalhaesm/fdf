@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/05 19:06:01 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:50:05 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_scene(t_mlx *data)
 	}
 	data->win_ptr = mlx_new_window(data->mlx_ptr, \
 		WIN_WIDTH, WIN_HEIGHT, "Fil de Fer");
-	data->menu = FALSE;
+	data->show_legend = FALSE;
 	data->legend.width = CTRL_WIDTH;
 	data->legend.height = WIN_HEIGHT;
 	data->canvas.height = WIN_HEIGHT;

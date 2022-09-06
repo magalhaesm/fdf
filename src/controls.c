@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:43:39 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 19:58:00 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:49:58 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	show_legend(t_mlx *data);
 
 int	redraw(t_mlx *data)
 {
-	if (data->menu)
+	if (data->show_legend)
 		show_legend(data);
 	draw_scene(data);
 	return (EXIT_SUCCESS);
@@ -31,15 +31,15 @@ int	redraw(t_mlx *data)
 
 void	show_controls(t_mlx *data)
 {
-	if (data->menu == FALSE)
+	if (data->show_legend == FALSE)
 	{
-		data->menu = TRUE;
+		data->show_legend = TRUE;
 		resize(data);
 		show_legend(data);
 	}
 	else
 	{
-		data->menu = FALSE;
+		data->show_legend = FALSE;
 		resize(data);
 	}
 }

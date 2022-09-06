@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/05 08:36:25 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:50:29 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ typedef struct s_mlx
 	void	*win_ptr;
 	t_img	canvas;
 	t_img	legend;
+	t_bool	show_legend;
 	t_scene	scene;
-	t_bool	menu;
 }	t_mlx;
 
 typedef struct s_line

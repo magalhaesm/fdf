@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/04 20:38:08 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/05 23:50:13 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	set_scale(t_scene *scene);
 
 void	resize(t_mlx *data)
 {
-	if (data->menu)
+	if (data->show_legend)
 	{
 		data->canvas.width -= data->legend.width;
 		data->canvas.x = data->legend.width;
