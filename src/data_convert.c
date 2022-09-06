@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 22:34:25 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/05 08:36:56 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/06 00:12:25 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ static int	to_color(char *str)
 	int	pos_value;
 	int	index;
 
-	pos_value = 1;
-	symbol = 0;
 	sum = 0;
+	symbol = 0;
+	pos_value = 1;
 	index = ft_strlen(str) - 1;
 	while (str[index] != 'x' && index)
 	{

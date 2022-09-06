@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/05 23:50:13 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:18:43 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	zoom(int keysym, t_scene *scene)
 		scene->scale += 1;
 	else
 		scene->scale -= 1;
-	if (scene->scale < 2)
-		scene->scale = 2;
+	if (scene->scale < 1)
+		scene->scale = 1;
 	set_scale(scene);
 }
 
@@ -69,7 +69,7 @@ static int	get_scale(t_mlx *data)
 	area = data->canvas.width * WIN_HEIGHT / 4;
 	scale = area / (data->scene.rows * data->scene.cols);
 	scale = sqrt(scale);
-	if (scale < 2)
-		return (2);
+	if (scale < 1)
+		return (1);
 	return (scale);
 }
