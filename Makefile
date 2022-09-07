@@ -17,10 +17,6 @@ RM			= rm -f
 CYAN		= \033[1;36m
 RESET		= \033[0m
 
-MAPS = 10-2 10-70 20-60 42 42mod 50-4 100-6 basictest elem-col \
-			 elem-fract elem elem2 error fdf invalid julia mars \
-			 pentenegpos plat pnp_flat pylone-mod pylone pyra pyramide t1 t2
-
 LOG			= printf "$(CYAN)info:$(RESET) %s\n"
 
 all:		$(NAME)
@@ -41,13 +37,8 @@ $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 	@$(LOG) "Compiling $<"
 	$(CC) $(CFLAGS) -c $< -o $@
 
-%:
-	@./$(NAME) maps/$@.fdf &
-
 $(LIBFT):
 	@$(LOG) "Compiling libft..."
-	git submodule init
-	git submodule update
 	@make -C ./libft --no-print-directory
 
 clean:
