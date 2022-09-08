@@ -1,10 +1,12 @@
 NAME		= fdf
 INCLUDES	= fdf.h keycode.h
+INC_PATH	= $(addprefix include/, $(INCLUDES))
 SOURCES		= main.c load_data.c scene.c draw_line.c draw_utils.c events.c \
 						data_convert.c scene_utils.c rotation.c rotation_utils.c \
 						translation.c controls.c
 
 LIBFT		= ./libft/libft.a
+MLX			= ./mlx_linux/libmlx_Linux.a
 
 SRCS_PATH	= src
 OBJS_PATH	= obj
@@ -26,9 +28,9 @@ bonus: all
 norma:
 	@norminette $(SRCS_PATH) include
 
-$(NAME):	$(OBJS_PATH) $(LIBFT) $(OBJS) $(addprefix include/, $(INCLUDES))
+$(NAME):	$(OBJS_PATH) $(LIBFT) $(MLX) $(OBJS) $(INC_PATH)
 	@$(LOG) "Compiling $(NAME)"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -lmlx -lXext -lX11 -lm -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -Lmlx_linux -lmlx -lXext -lX11 -lm -o $(NAME)
 
 $(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
@@ -39,7 +41,10 @@ $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 
 $(LIBFT):
 	@$(LOG) "Compiling libft..."
-	@make -C ./libft --no-print-directory
+	@make -C libft --no-print-directory
+
+$(MLX):
+	@make -C mlx_linux
 
 clean:
 	@$(RM) -r $(OBJS_PATH)

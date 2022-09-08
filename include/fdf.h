@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 09:58:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/05 23:50:29 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:25:11 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
-# include <mlx.h>
 
 # include "../libft/libft.h"
+# include "../mlx_linux/mlx.h"
 # include "keycode.h"
 
 # define GRID 0x00dddd
