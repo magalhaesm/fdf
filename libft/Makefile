@@ -16,7 +16,7 @@ OBJDIR		= obj
 OBJS		= $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 OBJS_BONUS	= $(addprefix $(OBJDIR)/, $(BONUS:.c=.o))
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -O3
 RM			= rm -f
 
 CYAN	= \33[1;36m

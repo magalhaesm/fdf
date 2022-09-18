@@ -12,7 +12,7 @@ SRC_OBJ		= $(subst src, obj, $(SRCS:.c=.o))
 PRS_OBJ		= $(subst src/parse, obj, $(PRS_SRC:.c=.o))
 PRT_OBJ		= $(subst src/print, obj, $(PRT_SRC:.c=.o))
 
-CFLAGS		= -g -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -O3
 RM			= rm -f
 
 all:		$(NAME)
