@@ -1,19 +1,18 @@
-NAME		= fdf
-INCLUDES	= fdf.h keycode.h
-INC_PATH	= $(addprefix include/, $(INCLUDES))
-SOURCES		= main.c load_data.c scene.c draw_line.c draw_utils.c events.c \
-						data_convert.c scene_utils.c rotation.c rotation_utils.c \
-						translation.c controls.c
+NAME     = fdf
+INCLUDES = fdf.h keycode.h
+INC_PATH = $(addprefix include/, $(INCLUDES))
+SOURCES  = main.c load_data.c scene.c draw_line.c draw_utils.c events.c
+SOURCES  += data_convert.c scene_utils.c transform.c rotation.c controls.c
 
-LIBFT		= ./libft/libft.a
-MLX			= ./mlx_linux/libmlx_Linux.a
+LIBFT = ./libft/libft.a
+MLX   = ./mlx_linux/libmlx_Linux.a
 
 SRCS_PATH	= src
 OBJS_PATH	= obj
 SRCS		= $(addprefix $(SRCS_PATH)/, $(SOURCES))
 OBJS		= $(addprefix $(OBJS_PATH)/, $(SOURCES:.c=.o))
 
-CFLAGS		= -Wall -Wextra -Werror -O3
+CFLAGS		= -Wall -Wextra -Werror -O3 -g
 RM			= rm -f
 
 CYAN		= \033[1;36m

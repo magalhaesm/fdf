@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 15:09:12 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/05 23:50:05 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:37:16 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,15 @@ static void	set_point(t_point *p, int row, int col, const t_scene *scene);
 
 void	draw_scene(t_mlx *data)
 {
-	data->canvas.ptr = mlx_new_image(data->mlx_ptr, data->canvas.width, \
-		WIN_HEIGHT);
-	data->canvas.addr = mlx_get_data_addr(data->canvas.ptr, \
-		&data->canvas.bpp, &data->canvas.line_len, &data->canvas.endian);
+	data->canvas.ptr = mlx_new_image(
+			data->mlx_ptr, data->canvas.width, WIN_HEIGHT);
+	data->canvas.addr = mlx_get_data_addr(
+			data->canvas.ptr, &data->canvas.bpp,
+			&data->canvas.line_len, &data->canvas.endian);
 	set_rotation(&data->scene.cache);
 	render_scene(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
+	mlx_put_image_to_window(
+		data->mlx_ptr, data->win_ptr,
 		data->canvas.ptr, data->canvas.x, 0);
 	mlx_destroy_image(data->mlx_ptr, data->canvas.ptr);
 }
@@ -37,12 +39,12 @@ void	init_scene(t_mlx *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 	{
-		ft_printf("Error: No X server found.\n");
+		ft_putendl_fd("Error: No X server found.", STDERR_FILENO);
 		destroy_map(&data->scene);
 		exit(EXIT_FAILURE);
 	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, \
-		WIN_WIDTH, WIN_HEIGHT, "Fil de Fer");
+	data->win_ptr = mlx_new_window(data->mlx_ptr,
+			WIN_WIDTH, WIN_HEIGHT, "Fil de Fer");
 	data->show_legend = FALSE;
 	data->legend.width = CTRL_WIDTH;
 	data->legend.height = WIN_HEIGHT;
@@ -75,15 +77,14 @@ static void	render_scene(const t_mlx *data)
 		col = -1;
 		while (++col < data->scene.cols)
 		{
+			set_point(&p1, row, col, &data->scene);
 			if (col + 1 < data->scene.cols)
 			{
-				set_point(&p1, row, col, &data->scene);
 				set_point(&p2, row, col + 1, &data->scene);
 				draw_line(&data->canvas, p1, p2);
 			}
 			if (row + 1 < data->scene.rows)
 			{
-				set_point(&p1, row, col, &data->scene);
 				set_point(&p2, row + 1, col, &data->scene);
 				draw_line(&data->canvas, p1, p2);
 			}
@@ -91,6 +92,7 @@ static void	render_scene(const t_mlx *data)
 	}
 }
 
+/* Apply transformations to the point */
 static void	set_point(t_point *p, int row, int col, const t_scene *scene)
 {
 	p->x = col * scene->scale - scene->scaled_col;

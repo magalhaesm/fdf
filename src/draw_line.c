@@ -6,15 +6,19 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 14:05:33 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/02 22:34:16 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:56:09 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static int	iabs(int x);
+#define RED 0
+#define GREEN 1
+#define BLUE 2
+
+static int	iabs(int number);
 static void	setup(t_line *line, t_point p1, t_point p2);
-static void	channel_offset(t_point *p1, t_point *p2);
+static void	set_color_channels(t_point *p1, t_point *p2);
 static int	get_color(t_point *p1, t_point *p2, const t_line *line);
 
 void	draw_line(const t_img *canvas, t_point p1, t_point p2)
@@ -22,7 +26,7 @@ void	draw_line(const t_img *canvas, t_point p1, t_point p2)
 	t_line	line;
 
 	setup(&line, p1, p2);
-	channel_offset(&p1, &p2);
+	set_color_channels(&p1, &p2);
 	while (line.pos <= line.len)
 	{
 		put_pixel(canvas, p1.x, p1.y, get_color(&p1, &p2, &line));
@@ -59,14 +63,14 @@ static void	setup(t_line *line, t_point p1, t_point p2)
 	line->pos = 0;
 }
 
-static void	channel_offset(t_point *p1, t_point *p2)
+static void	set_color_channels(t_point *p1, t_point *p2)
 {
-	p1->rgb[0] = (p1->color >> 16) & 0xFF;
-	p1->rgb[1] = (p1->color >> 8) & 0xFF;
-	p1->rgb[2] = p1->color & 0xFF;
-	p2->rgb[0] = (p2->color >> 16) & 0xFF;
-	p2->rgb[1] = (p2->color >> 8) & 0xFF;
-	p2->rgb[2] = p2->color & 0xFF;
+	p1->rgb[RED] = (p1->color >> 16) & 0xFF;
+	p1->rgb[GREEN] = (p1->color >> 8) & 0xFF;
+	p1->rgb[BLUE] = p1->color & 0xFF;
+	p2->rgb[RED] = (p2->color >> 16) & 0xFF;
+	p2->rgb[GREEN] = (p2->color >> 8) & 0xFF;
+	p2->rgb[BLUE] = p2->color & 0xFF;
 }
 
 static int	get_color(t_point *p1, t_point *p2, const t_line *line)
@@ -77,18 +81,18 @@ static int	get_color(t_point *p1, t_point *p2, const t_line *line)
 	double	percentage;
 
 	percentage = (double)line->pos / line->len;
-	red = (1 - percentage) * p1->rgb[0];
-	red += percentage * p2->rgb[0];
-	green = (1 - percentage) * p1->rgb[1];
-	green += percentage * p2->rgb[1];
-	blue = (1 - percentage) * p1->rgb[2];
-	blue += percentage * p2->rgb[2];
+	red = (1 - percentage) * p1->rgb[RED];
+	red += percentage * p2->rgb[RED];
+	green = (1 - percentage) * p1->rgb[GREEN];
+	green += percentage * p2->rgb[GREEN];
+	blue = (1 - percentage) * p1->rgb[BLUE];
+	blue += percentage * p2->rgb[BLUE];
 	return (red << 16 | green << 8 | blue);
 }
 
-static int	iabs(int x)
+static int	iabs(int number)
 {
-	if (x < 0)
-		return (-x);
-	return (x);
+	if (number < 0)
+		return (-number);
+	return (number);
 }

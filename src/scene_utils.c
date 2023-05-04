@@ -6,14 +6,20 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 11:12:21 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/06 19:18:43 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2023/04/09 17:08:37 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-static int	get_scale(t_mlx *data);
-static void	set_scale(t_scene *scene);
+int	quit(t_mlx *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	destroy_map(&data->scene);
+	free(data->mlx_ptr);
+	exit(EXIT_SUCCESS);
+}
 
 void	resize(t_mlx *data)
 {
@@ -32,7 +38,7 @@ void	resize(t_mlx *data)
 	data->scene.std_scale = get_scale(data);
 }
 
-void	reset_scene(t_scene *scene)
+int	reset_scene(t_scene *scene)
 {
 	scene->scale = scene->std_scale;
 	scene->z_scale = scene->std_z;
@@ -42,26 +48,16 @@ void	reset_scene(t_scene *scene)
 	scene->cache.alpha = 0;
 	scene->cache.beta = 0;
 	scene->cache.gamma = 0;
+	return (TRUE);
 }
 
-void	zoom(int keysym, t_scene *scene)
-{
-	if (keysym == K_EQUAL)
-		scene->scale += 1;
-	else
-		scene->scale -= 1;
-	if (scene->scale < 1)
-		scene->scale = 1;
-	set_scale(scene);
-}
-
-static void	set_scale(t_scene *scene)
+void	set_scale(t_scene *scene)
 {
 	scene->scaled_col = (scene->cols * scene->scale) / 2;
 	scene->scaled_row = (scene->rows * scene->scale) / 2;
 }
 
-static int	get_scale(t_mlx *data)
+int	get_scale(t_mlx *data)
 {
 	int	scale;
 	int	area;

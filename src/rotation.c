@@ -6,7 +6,7 @@
 /*   By: mdias-ma <mdias-ma@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:35:09 by mdias-ma          #+#    #+#             */
-/*   Updated: 2022/09/05 22:45:16 by mdias-ma         ###   ########.fr       */
+/*   Updated: 2023/04/08 17:09:30 by mdias-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	rotate(t_point *p, const t_cache *cache)
 	set_gamma(p, cache);
 }
 
+// Cache angles
 void	set_rotation(t_cache *cache)
 {
 	cache->cos_alpha = cos(cache->alpha);
